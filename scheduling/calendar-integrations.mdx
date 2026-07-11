@@ -1,39 +1,86 @@
 ---
 title: "Calendar integrations"
-description: "Sync with Google Calendar and Microsoft 365."
+description: "Connect Google Calendar or Microsoft Outlook to block busy times and add bookings automatically."
 icon: "calendars"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Calendar integrations — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Connect an external calendar so EzyText can **block your busy times** (preventing
+double-booking) and **add new bookings** to your calendar automatically. Manage
+connections at **Settings → Calendars** (`/settings/calendars`).
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner &nbsp;·&nbsp; Supports **Google Calendar** and
+  **Microsoft Outlook**.
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Connect a calendar
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Open Settings → Calendars">
+    Click **Connect Google Calendar** or **Connect Microsoft Outlook**.
+  </Step>
+  <Step title="Sign in and grant access">
+    You'll be sent to Google or Microsoft to authorize access, then returned to
+    EzyText.
+  </Step>
+  <Step title="Choose how each calendar is used">
+    For each calendar on the account, toggle:
+
+    - **Check for conflicts** — pulls busy times into your availability so booked
+      slots disappear.
+    - **Add bookings here** — makes this the calendar where new booking events (and
+      Google Meet links) are created.
   </Step>
 </Steps>
+
+## What syncs
+
+- **Busy times** from calendars marked "Check for conflicts" remove matching slots
+  from your booking pages.
+- **Bookings** are written to the calendar marked "Add bookings here", and updated
+  or removed when a booking is rescheduled or cancelled.
+
+<Note>
+  **Google Meet** links are generated only on Google connections. Microsoft
+  connections can't create Meet links.
+</Note>
+
+## Connection status
+
+- **Connected** — syncing normally.
+- **Needs attention** — access broke; click **Reconnect**.
+- **Disconnected** — removed.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Which providers are supported?">
+    Google Calendar and Microsoft Outlook (Microsoft 365).
+  </Accordion>
+  <Accordion title="Can I connect more than one calendar?">
+    Yes — connect multiple accounts and choose per-calendar whether each blocks
+    conflicts and/or receives bookings.
+  </Accordion>
+  <Accordion title="Will EzyText see my event details?">
+    It uses busy/free times to block slots and writes booking events. Configure which
+    calendars are used from the connection settings.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="Connection shows 'Needs attention'">
+    Access expired or was revoked. Click **Reconnect** to restore syncing.
+  </Accordion>
+  <Accordion title="Busy times aren't blocking slots">
+    Make sure the calendar has **Check for conflicts** enabled, then use **Refresh
+    calendars**.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Bookings" icon="calendar-days" href="/scheduling/bookings">
+  Manage your booked meetings.
+</Card>

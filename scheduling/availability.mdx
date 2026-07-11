@@ -1,39 +1,70 @@
 ---
 title: "Availability"
-description: "Set the hours you can be booked."
+description: "Set the weekly hours and date overrides when you can be booked."
 icon: "clock"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Availability — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Availability schedules define when people can book you. Each
+[meeting type](/scheduling/meeting-types) uses a schedule, so slots only appear
+during your bookable hours. Manage schedules under **Availability**
+(`/availability`).
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Set your weekly hours
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Pick or create a schedule">
+    Choose an existing schedule (one is marked **Default**) or create a new one.
+  </Step>
+  <Step title="Set the timezone">
+    Weekly hours are wall-clock times in the schedule's **timezone**.
+  </Step>
+  <Step title="Toggle days and set ranges">
+    Turn each day on/off. For enabled days, set one or more time ranges (for example,
+    9:00–12:00 and 13:00–17:00). Use **Copy to…** to reuse a day's hours on others.
   </Step>
 </Steps>
+
+## Date overrides
+
+Add **overrides** for specific dates — mark a day **unavailable** (holidays) or set
+custom hours just for those dates. Overrides take priority over your weekly hours.
+
+## Multiple schedules
+
+Create several named schedules (for example, "Sales hours" and "Support hours") and
+assign different ones to different meeting types. Meeting types using a deleted
+schedule fall back to the default.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Why don't external calendar events block my slots?">
+    They can — connect a [calendar](/scheduling/calendar-integrations) and mark it
+    "Check for conflicts" so busy times remove slots automatically.
+  </Accordion>
+  <Accordion title="Can different meeting types have different hours?">
+    Yes — create multiple schedules and pick one per meeting type.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="'Time ranges overlap' / 'End must be after start'">
+    Fix the day's ranges so they don't overlap and each end time is after its start.
+  </Accordion>
+  <Accordion title="No slots show on my booking page">
+    Confirm the schedule has enabled days with hours, the timezone is correct, and no
+    override marks the date unavailable.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Bookings" icon="calendar-days" href="/scheduling/bookings">
+  Manage booked meetings.
+</Card>

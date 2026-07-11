@@ -1,39 +1,53 @@
 ---
 title: "Calendar"
-description: "See and manage all your bookings on one calendar."
+description: "See and manage all your bookings and busy times on one calendar."
 icon: "calendar"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Calendar — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+The calendar gives you a single view of your bookings and external busy times. Open
+it from **Calendar** in the sidebar (`/calendar`).
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
+## Views and navigation
 
-## How-to
+Switch between **Day**, **Week**, **Month**, and **Agenda** views, jump to
+**Today**, and page forward/back. Times display in your workspace timezone.
 
-<Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
-  </Step>
-</Steps>
+The calendar shows two kinds of events:
+
+- **Bookings** — colored by their [meeting type](/scheduling/meeting-types), titled
+  with the invitee's name.
+- **Busy blocks** — gray, read-only times synced from your connected external
+  calendars.
+
+## Work from the calendar
+
+- **Filter** by meeting type, host, and status.
+- **Click** a booking to open its details (reschedule, cancel, mark completed/no-show).
+- **Drag** a booking to a new time to reschedule (with a confirmation). External
+  busy blocks and finished bookings are read-only.
+
+A side panel shows a mini month view and your upcoming bookings.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Why do I see gray 'Busy' blocks?">
+    Those come from external calendars you've connected and marked "Check for
+    conflicts". They prevent double-booking. See
+    [Calendar integrations](/scheduling/calendar-integrations).
+  </Accordion>
+  <Accordion title="Can I create an event directly on the calendar?">
+    The calendar shows bookings and busy times. New meetings are created when someone
+    books a [meeting type](/scheduling/meeting-types).
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<Card title="Connect a calendar" icon="calendars" href="/scheduling/calendar-integrations">
+  Sync Google or Microsoft calendars.
+</Card>

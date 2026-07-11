@@ -1,39 +1,91 @@
 ---
 title: "Tickets"
-description: "Track issues and follow-ups as tickets."
+description: "Track issues and follow-ups as tickets with status, priority, and assignees."
 icon: "ticket"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Tickets — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Tickets track work items and support requests within your team — each with a
+status, priority, assignee, comments, and an activity log. Open them from
+**Tickets** in the sidebar (`/tickets`).
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
+<Note>
+  Tickets are standalone team tasks. They aren't linked to inbox conversations or
+  contacts — they reference the teammates assigned to them.
+</Note>
 
-## How-to
+## Create a ticket
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Click Create">
+    On the Tickets page, click **Create**.
+  </Step>
+  <Step title="Fill in the details">
+    Enter a **Subject** (required), optional **Description**, a **Priority**, an
+    optional **Due** date, an **Assignee**, and **Tags**.
+  </Step>
+  <Step title="Save">
+    New tickets start as **Open**, numbered `TCK-123`.
   </Step>
 </Steps>
+
+## Views
+
+Switch between a **List** and a **Board** (Kanban, one column per status). Search by
+subject, description, or ticket number, and filter by status, priority, assignee,
+tags, due date, or overdue.
+
+## Statuses and priorities
+
+<Tabs>
+  <Tab title="Status">
+    **Open → In progress → Resolved → Closed**, plus **Reopened**. Change status from
+    the ticket sidebar — only valid next states are offered.
+  </Tab>
+  <Tab title="Priority">
+    **Low**, **Medium**, **High**, **Urgent**. A ticket past its due date (and not
+    resolved/closed) is flagged **overdue**.
+  </Tab>
+</Tabs>
+
+## Work a ticket
+
+Open a ticket to:
+
+- **Comment** — discuss with your team; edit or delete your own comments.
+- **Change** status, priority, assignee, due date, and tags from the sidebar.
+- **Attach** files (up to 25 MB each).
+- Review the **Activity** timeline of every change.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Can I link a ticket to a conversation or contact?">
+    Not currently — tickets are standalone team tasks referencing assignees and
+    reporters.
+  </Accordion>
+  <Accordion title="Who is the reporter?">
+    The person who created the ticket, set automatically.
+  </Accordion>
+  <Accordion title="Can I reopen a closed ticket?">
+    Yes — closed and resolved tickets can be **Reopened**.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="I can't change a ticket to a certain status">
+    Status changes follow a workflow (for example, you resolve before you close).
+    Only allowed next statuses appear in the dropdown.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Unified inbox" icon="inbox" href="/inbox/overview">
+  Manage conversations across channels.
+</Card>

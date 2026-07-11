@@ -1,39 +1,80 @@
 ---
 title: "Meeting types"
-description: "Define bookable meeting types and their rules."
+description: "Define bookable meeting types with duration, location, questions, reminders, and hosts."
 icon: "calendar-check"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Meeting types — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+A **meeting type** is a kind of meeting people can book with you — like "Intro
+Call" or "Demo". Each has its own duration, location, availability, and booking
+link. Manage them under **Meeting Types** (`/meeting-types`).
 
-## Before you start
+<Info>
+  **Difficulty:** Intermediate
+</Info>
 
-Prerequisites and permissions needed for this task.
+## Create a meeting type
 
-## How-to
+Click **New meeting type**. The form has five tabs:
 
-<Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
-  </Step>
-</Steps>
+<AccordionGroup>
+  <Accordion title="Details" icon="pen">
+    **Name**, a **URL slug** (used in the booking link, auto-suggested), a
+    **Description**, a **Color**, and a **Location**: **Google Meet**, **Phone call**,
+    **In person** (address), or **Custom link** (URL).
+  </Accordion>
+  <Accordion title="Scheduling" icon="clock">
+    Choose an **availability schedule**, set the **duration**, **slot increment**,
+    **buffers** before/after, **minimum notice**, **booking window** (how far ahead),
+    and optional **daily/weekly booking limits**.
+  </Accordion>
+  <Accordion title="Questions" icon="circle-question">
+    Add up to 10 custom booking questions (short/long text, dropdown, checkbox,
+    phone, email), each optional or required.
+  </Accordion>
+  <Accordion title="Notifications" icon="bell">
+    Set a **confirmation message** and up to five **reminders** (e.g. "24 hours
+    before").
+  </Accordion>
+  <Accordion title="Host" icon="user">
+    Assign to **yourself**, **a specific user**, or **round robin** across a team
+    (with per-member weights).
+  </Accordion>
+</AccordionGroup>
+
+## Share your booking link
+
+Each meeting type has a public link like `yourapp.com/book/<workspace>/<slug>`. Copy
+it from the meeting type's card and share it — invitees pick a time and book
+themselves. See [Bookings](/scheduling/bookings).
+
+<Note>
+  **Google Meet** links are generated automatically only when the host has a
+  **Google** calendar connected. Microsoft connections can't create Meet links.
+</Note>
+
+## Manage
+
+From the list you can **Edit**, **Duplicate**, and **Archive/Activate** a meeting
+type. Archived types can't be booked.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Can I charge for bookings?">
+    No — paid bookings aren't supported. Meeting types are free to book.
+  </Accordion>
+  <Accordion title="How do reminders get sent?">
+    Invitees and hosts receive email and SMS reminders based on the offsets you set
+    (for example, 24 hours before).
+  </Accordion>
+  <Accordion title="What's round robin?">
+    Bookings are distributed across a team of hosts, optionally weighted so some hosts
+    get more.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<Card title="Set your availability" icon="clock" href="/scheduling/availability">
+  Control when you can be booked.
+</Card>
