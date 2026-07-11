@@ -1,39 +1,78 @@
 ---
 title: "Connect Meta Ads"
-description: "Authorize Meta Business to capture Lead Ads."
+description: "Authorize Meta so Facebook and Instagram Lead Ads flow into EzyText as contacts."
 icon: "meta"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
+<Info>
+  **Time to complete:** ~5 minutes &nbsp;·&nbsp; **Difficulty:** Beginner
+  &nbsp;·&nbsp; **Permission:** Manage advertising
+</Info>
 
 ## Overview
 
-Connect Meta Ads — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Connecting Meta Ads lets EzyText capture **Lead Ads** from Facebook and Instagram
+as contacts automatically. You connect by signing in with Facebook — no app secret
+or token to enter.
 
-## Before you start
-
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Connect
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Start the connection">
+    Go to **Advertising → Meta Ads** and click **Connect Meta Ads**.
+  </Step>
+  <Step title="Sign in with Facebook">
+    Click **Continue with Facebook** and grant access to your ads and leads. EzyText
+    never changes your ads or spend.
+  </Step>
+  <Step title="Choose an ad account">
+    Pick which **ad account** should send you leads.
+  </Step>
+  <Step title="Finish">
+    Review your campaigns and click **Done**.
   </Step>
 </Steps>
+
+## After connecting
+
+- **Lead Ads** submissions arrive as contacts with source **Meta Ads**, matched by
+  phone to existing contacts.
+- Trigger a welcome [workflow](/automation/workflow-builder) on **New advertising
+  lead**.
+- Measure results on **Campaign Performance** and [Ad attribution](/analytics/ad-attribution).
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Do I need Meta Business verification?">
+    You connect via Facebook login. If your ad account requires business
+    verification to access lead data, complete that in Meta Business settings first.
+  </Accordion>
+  <Accordion title="Does it capture both Facebook and Instagram leads?">
+    Yes — Lead Ads from both surface as contacts.
+  </Accordion>
+  <Accordion title="Do I enter an app secret?">
+    No. Connection is via Facebook sign-in; credentials are managed by EzyText.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="'Permission wasn't granted'">
+    You declined a permission during Facebook login. Reconnect and allow ads and
+    leads access.
+  </Accordion>
+  <Accordion title="Leads aren't arriving">
+    Confirm the correct ad account is selected and the connection shows **Receiving
+    leads**. Reconnect if it says **Needs attention**.
+  </Accordion>
+  <Accordion title="'No ad accounts found'">
+    The Facebook login has no accessible ad accounts. Sign in with the account that
+    manages your ads.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Connect Google Ads" icon="google" href="/providers/google-ads">
+  Capture Google leads too.
+</Card>
