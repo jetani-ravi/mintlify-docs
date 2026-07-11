@@ -4,36 +4,85 @@ description: "How SMS, Email, and Advertising channels fit together in EzyText."
 icon: "layer-group"
 ---
 
+## What is a channel?
+
+A **channel** is a way EzyText reaches and hears from your audience. Each channel
+is powered by a **provider** you connect with your own account and credentials.
+Once a channel is connected, you can use it in campaigns, automations, and your
+inbox.
+
+<CardGroup cols={3}>
+  <Card title="SMS" icon="comment-sms" href="/channels/sms">
+    Two-way text messaging via Twilio or Telnyx.
+  </Card>
+  <Card title="Email" icon="envelope" href="/channels/email">
+    Campaigns and transactional email from verified domains.
+  </Card>
+  <Card title="Advertising" icon="bullhorn" href="/channels/advertising">
+    Capture and attribute leads from Google and Meta Ads.
+  </Card>
+</CardGroup>
+
+## Channels vs. providers
+
+Think of a **channel** as the *what* (send SMS) and a **provider** as the *who*
+(Twilio). You pick a channel, then connect a provider under it:
+
+| Channel | Providers | Connected in |
+| --- | --- | --- |
+| SMS | [Twilio](/providers/twilio), [Telnyx](/providers/telnyx) | Settings → Channels → SMS |
+| Email | [Gmail](/providers/gmail), [Microsoft 365](/providers/microsoft-365), [SMTP](/providers/smtp) | Settings → Channels → Email |
+| Advertising | [Google Ads](/providers/google-ads), [Meta Ads](/providers/meta-ads) | Advertising |
+
 <Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
+  For SMS, **one provider is active at a time** per workspace. Switching providers
+  removes the previous provider's numbers and messaging services.
 </Note>
 
-## Overview
-
-Channels overview — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
-
-## Before you start
-
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Connect a channel
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Go to Settings → Channels">
+    You'll see providers grouped by channel category.
+  </Step>
+  <Step title="Choose a provider and click Configure">
+    Enter that provider's credentials on the **Connect** tab.
+  </Step>
+  <Step title="Finish setup">
+    For SMS, complete messaging service, numbers, and [10DLC](/compliance/a2p-10dlc).
+    For email, verify your domain and sender.
   </Step>
 </Steps>
+
+## Channel status
+
+Connected channels show a status badge:
+
+- **Active** — connected and able to send.
+- **Disconnected** — no valid credentials.
+- **Error** — a credential or health check failed.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Do I need to connect every channel?">
+    No. Connect only the channels you'll use. Many teams start with SMS.
+  </Accordion>
+  <Accordion title="Can I use my own provider account?">
+    Yes — EzyText connects to your own Twilio, Telnyx, Gmail, Microsoft 365, or ad
+    accounts. You keep control of billing and numbers with the provider.
+  </Accordion>
+  <Accordion title="Where do replies go?">
+    Inbound SMS and email land in your unified [Inbox](/inbox/overview), linked to
+    the contact and any related campaign.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<CardGroup cols={2}>
+  <Card title="Set up SMS" icon="comment-sms" href="/channels/sms">
+    Connect Twilio or Telnyx and start texting.
+  </Card>
+  <Card title="Stay compliant" icon="shield-check" href="/compliance/a2p-10dlc">
+    Register 10DLC before sending US SMS at volume.
+  </Card>
+</CardGroup>

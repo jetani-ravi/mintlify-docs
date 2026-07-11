@@ -1,39 +1,142 @@
 ---
 title: "Opt-out management"
-description: "Handle STOP keywords and keep your sending compliant."
+description: "Handle STOP keywords automatically and keep your SMS sending compliant."
 icon: "ban"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Opt-out management — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+When someone replies **STOP** (or another opt-out keyword), they must stop
+receiving your messages — it's a legal requirement and a carrier rule. EzyText
+detects opt-out keywords on every inbound message, flags the contact, and excludes
+them from all future campaigns automatically.
 
-## Before you start
+You manage opt-out keywords and the optional confirmation reply at **Settings →
+Opt-out** (the page shows Opt-out and [Opt-in](/compliance/opt-in) side by side).
 
-Prerequisites and permissions needed for this task.
+<Info>
+  **Difficulty:** Beginner &nbsp;·&nbsp; **Permission:** viewing needs Settings
+  read (Owner/Admin/Manager); changes need Settings update (Owner/Admin).
+</Info>
 
-## How-to
+## How opt-out detection works
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="A contact replies with a keyword">
+    EzyText checks each inbound message against your opt-out keywords **before** any
+    other processing (so `STOP` in reply to a poll is treated as an opt-out, not a vote).
+  </Step>
+  <Step title="The keyword is matched">
+    Matching is **case-insensitive** and **anchored to the start** of the message,
+    matching whole words. `STOP`, `stop`, `STOP.`, and `STOP now` all opt out;
+    `STOPOVER` does not.
+  </Step>
+  <Step title="The contact is opted out">
+    EzyText marks the contact as opted out, records an **Opted out** entry on their
+    activity timeline (with the keyword and message), and removes them from future
+    campaign audiences. Repeated STOPs are a no-op.
+  </Step>
+  <Step title="An optional confirmation is sent">
+    If you've configured an auto-reply message, EzyText sends it (see limitations
+    with provider-reserved keywords below).
   </Step>
 </Steps>
+
+### Default keywords
+
+Every workspace starts with the carrier-standard opt-out keywords:
+
+```
+STOP, STOPALL, STOP ALL, UNSUBSCRIBE, CANCEL, END, QUIT
+```
+
+## Configure opt-out
+
+<Steps>
+  <Step title="Open opt-out settings">
+    Go to **Settings → Opt-out**. The left column is **Opt-Out Settings**.
+  </Step>
+  <Step title="Manage keywords">
+    Under **Keywords**, type a keyword and press **Enter** (or click **Add**) to add
+    a custom one such as `leave` or `optout`. Edit or delete any keyword inline. You
+    can have up to **75 keywords** per workspace.
+  </Step>
+  <Step title="Set an auto-reply (optional)">
+    Under **Auto-Reply Message**, enter an optional confirmation (up to **1,600
+    characters**) that's sent when someone opts out, then click **Save**. Leave it
+    blank to send nothing extra.
+  </Step>
+</Steps>
+
+<Frame caption="Settings → Opt-out">
+  <img src="/images/compliance/opt-out-settings.png" alt="Opt-out settings page" />
+</Frame>
+
+## Provider-reserved keywords
+
+Carriers and providers reserve the standard keywords and reply to them at the
+network edge:
+
+- **Twilio** automatically handles `STOP, STOPALL, STOP ALL, UNSUBSCRIBE, CANCEL,
+  END, QUIT`. For these, Twilio sends its own STOP confirmation and blocks EzyText's
+  duplicate reply. Your custom keywords (like `leave`) are detected and answered by
+  EzyText instead.
+- **Telnyx** behaves similarly when advanced opt-out sync is applied on the profile.
+
+<Note>
+  Because of this, your custom auto-reply may not be sent for the standard keywords
+  — the provider's own STOP reply is delivered instead. Both may arrive in some
+  configurations.
+</Note>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Does opting out apply across all channels?">
+    Opting out flags the **contact**, so they're excluded from future SMS campaign
+    audiences. Always confirm consent before re-adding anyone.
+  </Accordion>
+  <Accordion title="Can an opted-out contact rejoin?">
+    Yes — if they reply with an opt-in keyword like **START**. See
+    [Opt-in & auto-reply](/compliance/opt-in). They also can't be re-onboarded
+    through a [join link](/campaigns/join-links) while opted out.
+  </Accordion>
+  <Accordion title="Is there a limit on keywords?">
+    Yes, **75 per workspace**. Keywords are stored case-insensitively and must
+    contain at least one letter or digit.
+  </Accordion>
+  <Accordion title="Where can I see who opted out?">
+    Each contact's activity timeline shows an **Opted out** event with the keyword
+    and inbound message. Opted-out contacts are excluded from campaign sends
+    automatically.
+  </Accordion>
+  <Accordion title="Can I add a STOP footer to my messages?">
+    EzyText doesn't add an opt-out footer automatically. Include opt-out language in
+    your message copy where appropriate — carriers expect it, especially for
+    marketing.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="My custom opt-out reply isn't being sent">
+    For provider-reserved keywords (STOP, UNSUBSCRIBE, etc.), the carrier sends its
+    own reply and blocks EzyText's. Your custom auto-reply is sent only for
+    non-reserved keywords you've added yourself.
+  </Accordion>
+  <Accordion title="A contact still received a campaign after opting out">
+    Opt-out is evaluated at send time. If the campaign was already in flight when
+    they replied STOP, the last message may have been queued. New campaigns exclude
+    them. Confirm the **Opted out** event appears on their timeline.
+  </Accordion>
+  <Accordion title="'STOP' matched but a longer word shouldn't have">
+    Matching is whole-word and start-anchored, so `STOPOVER` won't match `STOP`. If
+    a message opted out unexpectedly, check whether it *starts* with one of your
+    keywords.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Opt-in & auto-reply" icon="circle-check" href="/compliance/opt-in">
+  How opted-out contacts re-subscribe.
+</Card>

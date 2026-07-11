@@ -1,39 +1,101 @@
 ---
 title: "SMS channel"
-description: "Send and receive text messages through Twilio or Telnyx."
+description: "Send and receive text messages through Twilio or Telnyx, with numbers, messaging services, and 10DLC."
 icon: "comment-sms"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-SMS channel — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+The SMS channel is EzyText's two-way texting capability. You connect one SMS
+provider — [Twilio](/providers/twilio) or [Telnyx](/providers/telnyx) — and EzyText
+handles sending, inbound replies, delivery status, and
+[A2P 10DLC](/compliance/a2p-10dlc) registration.
 
-## Before you start
+<CardGroup cols={2}>
+  <Card title="Connect Twilio" icon="plug" href="/providers/twilio">
+    Account SID + Auth Token.
+  </Card>
+  <Card title="Connect Telnyx" icon="plug" href="/providers/telnyx">
+    API Key (Messaging scope).
+  </Card>
+</CardGroup>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## How the SMS channel is organized
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Provider" icon="plug">
+    Your connected Twilio or Telnyx account. Only one is active per workspace.
+  </Step>
+  <Step title="Messaging service / profile" icon="gear">
+    A container that groups numbers and holds the webhook + 10DLC campaign link.
+    Twilio calls it a **messaging service**; Telnyx calls it a **messaging profile**.
+  </Step>
+  <Step title="Phone numbers" icon="hashtag">
+    The numbers you send from, attached to a messaging service.
+  </Step>
+  <Step title="10DLC brand & campaign" icon="shield-check">
+    Carrier registration that lets you send to US numbers reliably.
   </Step>
 </Steps>
+
+## Set up the SMS channel
+
+1. **Connect a provider** — see [Twilio](/providers/twilio) or [Telnyx](/providers/telnyx).
+2. **Register your brand** — [A2P 10DLC](/compliance/a2p-10dlc).
+3. **Create a messaging service / profile** and attach phone numbers.
+4. **Register a campaign** and start sending.
+
+The **Set Up Your Channel** wizard guides you through these in order right after
+you connect.
+
+## Numbers and messaging services
+
+On the SMS channel's **Numbers** tab you can:
+
+- **Buy a number** — filter by country, area code, or a contains-pattern, choose
+  SMS/MMS/Voice capabilities, and purchase.
+- **Assign a number** to a messaging service via the inline dropdown.
+- **Create a messaging service** with a friendly name.
+
+## Inbound, delivery, and compliance
+
+- **Replies** arrive in your [Inbox](/inbox/overview), linked to the contact.
+- **Delivery status** updates automatically via provider webhooks (configured for
+  you — no manual setup).
+- **Opt-outs** (STOP) and **opt-ins** (START) are detected on every inbound message
+  — see [Opt-out](/compliance/opt-out) and [Opt-in](/compliance/opt-in).
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Which provider should I choose?">
+    Both are carrier-grade. Choose based on your existing account, pricing, and
+    number availability. Twilio uses Account SID + Auth Token; Telnyx uses an API
+    Key with Messaging scope.
+  </Accordion>
+  <Accordion title="Can I send MMS?">
+    Yes, if your number and provider support it — enable the **MMS** capability when
+    buying a number.
+  </Accordion>
+  <Accordion title="Do I configure webhooks myself?">
+    No. EzyText registers inbound and delivery-status webhooks on your messaging
+    service automatically when you finish setup.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="Messages fail to send">
+    Confirm the channel badge is **Active**, the sending number is attached to a
+    messaging service, and — for US traffic — your 10DLC campaign is approved.
+  </Accordion>
+  <Accordion title="Replies aren't showing in the inbox">
+    Finish the setup wizard so webhooks are registered, and confirm the number
+    belongs to a managed messaging service.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Register for 10DLC" icon="shield-check" href="/compliance/a2p-10dlc">
+  Required for reliable US SMS delivery.
+</Card>

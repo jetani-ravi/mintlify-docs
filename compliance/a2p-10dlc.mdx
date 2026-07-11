@@ -1,39 +1,254 @@
 ---
 title: "A2P 10DLC registration"
-description: "Register your brand and campaign so US carriers deliver your SMS."
+description: "Register your brand and campaign so US carriers deliver your SMS reliably."
 icon: "shield-check"
 ---
 
+<Info>
+  **Time to complete:** ~20 minutes to submit &nbsp;·&nbsp; **Carrier approval:**
+  typically 1–2 business days &nbsp;·&nbsp; **Difficulty:** Intermediate
+</Info>
+
+## What is A2P 10DLC?
+
+**A2P 10DLC** (Application-to-Person, 10-Digit Long Code) is the US carrier
+framework for sending business messages from standard 10-digit numbers. Carriers
+require every business (a **brand**) and every messaging use case (a **campaign**)
+to be registered with The Campaign Registry (TCR). Registered senders get higher
+throughput and reliable delivery; unregistered traffic is filtered or blocked.
+
+EzyText handles registration for both [Twilio](/providers/twilio) and
+[Telnyx](/providers/telnyx) from inside the app — you fill in two forms and EzyText
+submits them to the carriers on your behalf.
+
 <Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
+  10DLC applies to **US mobile numbers**. If you only message outside the US, you
+  may not need it — but registering is still recommended for deliverability.
 </Note>
 
-## Overview
+## The registration sequence
 
-A2P 10DLC registration — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
-
-## Before you start
-
-Prerequisites and permissions needed for this task.
-
-## How-to
+Registration has a strict order because each step depends on the previous one:
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Connect your provider">
+    Connect [Twilio](/providers/twilio) or [Telnyx](/providers/telnyx) first —
+    brand and campaign registration run through your connected account.
+  </Step>
+  <Step title="Register your Brand">
+    Submit your business details. The brand must be **approved** before you can
+    register a campaign.
+  </Step>
+  <Step title="Create a Messaging Service / Profile">
+    A campaign must be linked to a messaging service (Twilio) or messaging profile
+    (Telnyx).
+  </Step>
+  <Step title="Register your Campaign">
+    Submit your use case, sample messages, and opt-in details.
+  </Step>
+  <Step title="Attach phone numbers">
+    Assign numbers to the messaging service so they send under the approved campaign.
   </Step>
 </Steps>
+
+<Warning>
+  You **cannot** register a campaign until the brand shows an approved status
+  (`APPROVED`, `VERIFIED`, or `ACTIVE`). Attempting earlier returns: *"Brand is not
+  approved yet (current status: …). Wait for approval before registering the campaign."*
+</Warning>
+
+## Register your Brand
+
+Go to your SMS channel's **Brand & Campaign** tab and click **Register 10DLC
+Brand** (also available as the first step of the setup wizard). The **Create Brand**
+drawer has three sections.
+
+<AccordionGroup>
+  <Accordion title="Business Information" icon="building">
+    | Field | Required | Notes |
+    | --- | --- | --- |
+    | **Brand Type** | Optional | Standard or Sole Proprietor |
+    | **Legal Business Name** | Required | Your registered legal name |
+    | **Business Type** | Required | Private / Public Company, Non-Profit, Government, Partnership |
+    | **EIN (Tax ID)** | Required | e.g. `12-3456789` |
+    | **Business Industry** | Required | e.g. Retail, Healthcare, Technology (24 options) |
+    | **Company Type** | Required | Private / Public / Non-Profit / Government |
+    | **Website URL** | Required | Must be a valid `https://` URL |
+    | **Brand Contact Email** | Required | Used for 2FA verification |
+    | **Social Media URLs** | Optional | LinkedIn, X, etc. |
+    | **Stock Exchange / Ticker** | Required for **public** companies only | Shown only when Company Type = Public |
+  </Accordion>
+  <Accordion title="Authorized Representative" icon="user">
+    | Field | Required | Notes |
+    | --- | --- | --- |
+    | **First / Last Name** | Required | The authorized contact |
+    | **Email Address** | Required | Valid email |
+    | **Phone Number** | Required | E.164 format, e.g. `+14155552671` |
+    | **Job Title** | Required | e.g. CEO |
+    | **Job Position** | Required | Director, GM, VP, CEO, CFO, CTO, COO, Other |
+  </Accordion>
+  <Accordion title="Physical Business Address" icon="location-dot">
+    | Field | Required | Notes |
+    | --- | --- | --- |
+    | **Street Address (Line 1)** | Required | |
+    | **Street Address (Line 2)** | Optional | |
+    | **City / State / ZIP** | Required | ZIP allows letters, digits, spaces, hyphens |
+    | **Country** | Required | 2-letter ISO code, e.g. `US` |
+  </Accordion>
+</AccordionGroup>
+
+Click **Create Brand**. You'll see *"10DLC brand submitted for carrier
+registration."* The brand starts as **Pending** and updates automatically as the
+carrier reviews it.
+
+<Tip>
+  Your **EIN and legal business name must exactly match** your IRS records. A
+  mismatch is the most common cause of brand rejection.
+</Tip>
+
+## Register your Campaign
+
+Once your brand is approved, open the **Brand & Campaign** tab and click
+**Create new A2P Campaign**. Fill in:
+
+<AccordionGroup>
+  <Accordion title="Brand & use case">
+    - **A2P Brand** — your approved brand.
+    - **Use case** — pick from 15 options with monthly pricing, e.g. **Marketing**
+      ($10/mo), **Mixed** ($10), **2FA** ($10), **Account Notification** ($10),
+      **Customer Care** ($10), **Low Volume Mixed** ($2), **Sole Proprietor** ($2).
+  </Accordion>
+  <Accordion title="Messaging service">
+    Either **create a new messaging service/profile** (enter a name) or **select an
+    existing** one. The campaign is linked to it.
+  </Accordion>
+  <Accordion title="Campaign description & opt-in flow">
+    - **Campaign description** — minimum **40 characters**. Describe what the
+      campaign is used for.
+    - **Opt-in flow** — minimum **40 characters** (max 2048). Describe exactly how
+      people consent to receive messages. **Required by carriers.**
+  </Accordion>
+  <Accordion title="Sample messages">
+    - **Sample message #1 and #2** — required, minimum **20 characters** each.
+    - **Sample #3–#5** — optional. Provide realistic examples of what you'll send.
+  </Accordion>
+  <Accordion title="Message content flags">
+    Check any that apply: embedded links, phone numbers, direct lending / loan
+    content, or age-gated content. Carriers use these to assess your campaign.
+  </Accordion>
+  <Accordion title="Auto-reply messages (optional)">
+    Optional **opt-in confirmation**, **opt-out confirmation**, and **help** replies
+    (20–320 characters each). If you leave keywords unset, EzyText applies standard
+    defaults: opt-in `START, YES`; opt-out `STOP, CANCEL, END, QUIT, UNSUBSCRIBE`;
+    help `HELP, INFO`.
+  </Accordion>
+</AccordionGroup>
+
+Click **Create**. You'll see *"10DLC campaign submitted for carrier
+registration."* The campaign starts as **In progress**.
+
+<Warning>
+  Your **sample messages and opt-in flow must be consistent** with each other and
+  with your website. Carriers reject campaigns whose samples don't match the stated
+  use case or whose opt-in description is vague.
+</Warning>
+
+## Status reference
+
+EzyText shows a colored badge for both the brand and the campaign.
+
+<Tabs>
+  <Tab title="Brand statuses">
+    | Badge | Statuses | Meaning |
+    | --- | --- | --- |
+    | <Icon icon="circle-check" color="#16a34a" /> Green | Approved, Verified, Vetted & Verified | Ready — you can register campaigns |
+    | <Icon icon="clock" color="#d97706" /> Amber | Pending, Submitted, Pending Review, Self Declared | Under carrier review |
+    | <Icon icon="circle-xmark" color="#dc2626" /> Red | Rejected, Failed, Unverified | Needs changes and resubmission |
+    | <Icon icon="eye" color="#2563eb" /> Blue | In Review, Draft | Being prepared / examined |
+  </Tab>
+  <Tab title="Campaign statuses">
+    | Badge | Statuses | Meaning |
+    | --- | --- | --- |
+    | <Icon icon="circle-check" color="#16a34a" /> Green | Verified, MNO Provisioned | Approved and live |
+    | <Icon icon="clock" color="#d97706" /> Amber | In progress, Pending, TCR Accepted, TCR Pending Review | Under review (1–2 business days typical) |
+    | <Icon icon="circle-xmark" color="#dc2626" /> Red | Failed, Rejected, TCR Rejected, MNO Rejected | Rejected — review and resubmit |
+    | <Icon icon="ban" color="#dc2626" /> Red ban | Suspended | Carrier suspended the campaign |
+    | <Icon icon="ban" color="#6b7280" /> Grey ban | Expired | Registration expired |
+  </Tab>
+</Tabs>
+
+<Note>
+  Statuses update automatically as EzyText syncs with the carrier. You don't need
+  to refresh or resubmit while a badge is amber.
+</Note>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="How long does approval take?">
+    Brand verification is often quick; campaign approval typically takes **1–2
+    business days**. Some use cases (like political or charity) may take longer due
+    to additional carrier vetting.
+  </Accordion>
+  <Accordion title="What's the difference between a brand and a campaign?">
+    A **brand** is your business identity (registered once). A **campaign** is a
+    specific messaging use case (marketing, 2FA, notifications). One brand can have
+    multiple campaigns.
+  </Accordion>
+  <Accordion title="Do I need an EIN? What if I'm a sole proprietor?">
+    Standard brands require an EIN. Sole proprietors can register using the **Sole
+    Proprietor** brand type / use case ($2/mo), which has lower throughput limits
+    and a lighter verification path.
+  </Accordion>
+  <Accordion title="Can I edit my sample messages after approval?">
+    Changing a campaign's use case or samples generally requires re-review by the
+    carrier. Register the campaign that matches how you'll actually message.
+  </Accordion>
+  <Accordion title="Do daily limits depend on my brand?">
+    Yes. Your daily message throughput is determined by your **brand trust score**,
+    which the carriers assign during vetting.
+  </Accordion>
+  <Accordion title="Are opt-out keywords included automatically?">
+    Yes. If you don't set custom keywords, EzyText applies standard opt-out
+    (`STOP, CANCEL, END, QUIT, UNSUBSCRIBE`), opt-in (`START, YES`), and help
+    (`HELP, INFO`) keywords. See [Opt-out management](/compliance/opt-out).
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="Brand rejected or 'Unverified'">
+    Almost always an identity-data mismatch. Verify that your **Legal Business
+    Name**, **EIN**, and **address** exactly match your IRS/official records, then
+    edit and resubmit. A `.gov`/`.org` mismatch for non-profits is also common.
+  </Accordion>
+  <Accordion title="'Brand is not approved yet' when creating a campaign">
+    The brand badge isn't green yet. Wait until it shows **Approved / Verified**
+    before registering a campaign — the campaign form is gated on brand approval.
+  </Accordion>
+  <Accordion title="Campaign rejected (TCR Rejected / MNO Rejected)">
+    Common causes: opt-in flow too vague, sample messages that don't match the use
+    case, missing STOP/HELP handling in samples, or links to a domain that doesn't
+    describe the messaging program. Tighten your opt-in description and samples,
+    then resubmit.
+  </Accordion>
+  <Accordion title="'Customer Profile is not compliant' (Twilio)">
+    Twilio's underlying TrustHub business profile isn't approved. Complete Twilio's
+    business profile verification in the Twilio Console, then retry brand
+    registration in EzyText.
+  </Accordion>
+  <Accordion title="Can't delete a brand">
+    *"Cannot delete brand: N campaign(s) still connected. Delete the campaigns
+    first."* Remove the dependent campaigns before deleting the brand.
+  </Accordion>
+</AccordionGroup>
+
+<CardGroup cols={2}>
+  <Card title="Opt-out management" icon="ban" href="/compliance/opt-out">
+    STOP handling and keyword configuration.
+  </Card>
+  <Card title="Opt-in & auto-reply" icon="circle-check" href="/compliance/opt-in">
+    Consent and re-subscribe behavior.
+  </Card>
+</CardGroup>
