@@ -1,39 +1,76 @@
 ---
 title: "API reference"
-description: "Endpoints, authentication, and payloads."
+description: "Authenticate and call the EzyText REST API."
 icon: "code"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-API reference — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+EzyText exposes a REST API for your workspace's resources — contacts, campaigns,
+segments, polls, inbox, and more. Authenticate with an
+[API key](/developers/api-keys) and call the same resources you use in the app.
 
-## Before you start
+<Info>
+  **Difficulty:** Advanced
+</Info>
 
-Prerequisites and permissions needed for this task.
+## Authentication
 
-## How-to
+Create an [API key](/developers/api-keys), then send it on every request:
 
-<Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
-  </Step>
-</Steps>
+```http
+Authorization: Bearer et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+or
+
+```http
+X-API-Key: et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+An API key authenticates with **Owner-level** access to your workspace.
+
+## Interactive docs
+
+The full, always-current endpoint reference (request/response schemas) is served as
+interactive API docs by the platform. Ask your administrator for your instance's
+API docs URL (typically `/docs`), and the raw OpenAPI spec (typically `/docs-json`)
+if you want to generate a client.
+
+<Note>
+  API keys **cannot** manage other API keys or webhooks — those endpoints require a
+  signed-in user. Everything else you can do in the app is available to a key with
+  Owner access.
+</Note>
+
+## Example
+
+```bash
+curl https://<your-api-host>/contacts \
+  -H "Authorization: Bearer et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Is the API versioned?">
+    The REST paths aren't version-prefixed today. Follow the interactive OpenAPI spec
+    for the current contract.
+  </Accordion>
+  <Accordion title="Which resources can I access?">
+    The same org-scoped resources you use in the app — contacts, campaigns, segments,
+    polls, inbox, and more.
+  </Accordion>
+  <Accordion title="How do I get notified of events?">
+    Use [webhooks](/developers/webhooks) rather than polling the API.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<CardGroup cols={2}>
+  <Card title="API keys" icon="key" href="/developers/api-keys">
+    Create a key to authenticate.
+  </Card>
+  <Card title="Webhooks" icon="webhook" href="/developers/webhooks">
+    Get events pushed to you.
+  </Card>
+</CardGroup>
