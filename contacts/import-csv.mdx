@@ -1,39 +1,146 @@
 ---
 title: "Import contacts (CSV)"
-description: "Bulk-import contacts with field and tag mapping."
+description: "Bulk-import contacts from a CSV with column mapping, tags, and a target segment."
 icon: "file-import"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
+<Info>
+  **Time to complete:** ~5 minutes &nbsp;·&nbsp; **Difficulty:** Beginner
+  &nbsp;·&nbsp; **Limits:** 10 MB file, up to 50,000 rows
+</Info>
 
 ## Overview
 
-Import contacts (CSV) — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Import lets you add many contacts at once from a `.csv` file. You upload the file,
+map its columns to contact fields, optionally apply tags and add everyone to a
+segment, then run the import in the background.
+
+Reach it from **Contacts → Import CSV**, or directly at `/contacts/import`.
+
+<Tip>
+  Click **Download Template** on the import page to get a correctly-formatted
+  starter CSV with the standard columns.
+</Tip>
 
 ## Before you start
 
-Prerequisites and permissions needed for this task.
+- A `.csv` file (UTF-8 / plain text), **10 MB max**, **up to 50,000 rows**.
+- A header row plus at least one data row.
+- At minimum a **Phone** column and a **First Name** column.
+- Any [custom fields](/contacts/custom-fields) you want to import must already exist
+  in **Settings → Module Setup**.
 
-## How-to
+## Import your contacts
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Upload CSV" icon="upload">
+    On the **New Import** tab, drag in or browse to your `.csv`. EzyText parses the
+    headers and shows a preview of the first rows. Only `.csv` is accepted.
+  </Step>
+  <Step title="Map fields" icon="arrow-right-arrow-left">
+    Match each CSV column to a contact field. EzyText auto-detects common headers
+    (a green **High match** badge means it's confident). You can map:
+
+    - **First Name** (required), **Last Name**, **Phone** (required), **Email**
+    - **Street Address**, **Address Line 2**, **City**, **State / Province**,
+      **Postal Code**, **Country**
+    - Any importable **custom fields** (shown with a "Custom" badge)
+
+    Each mapped field has an **action** for existing contacts: **Replace**,
+    **Skip**, or **Overwrite if Empty**. You can't advance until First Name and
+    Phone are mapped.
+  </Step>
+  <Step title="Tags & options" icon="tag">
+    Apply one or more **tags** to every imported contact, and optionally add them
+    all to a **static segment** (or create a new one).
+  </Step>
+  <Step title="Review & import" icon="circle-check">
+    Check the summary, then click **Start Import**. Processing runs in the
+    background — you can watch live progress.
   </Step>
 </Steps>
+
+<Frame caption="Field mapping step">
+  <img src="/images/contacts/import-mapping.png" alt="CSV column mapping" />
+</Frame>
+
+## Duplicates
+
+EzyText detects duplicates by **phone number**. If a contact with the same phone
+already exists in your workspace, the imported row is **skipped** (your existing
+contact is left unchanged) and counted under **Duplicates** in the results.
+
+## Progress and results
+
+While the import runs you'll see a progress bar ("X of Y rows") and three counters:
+
+- **Success** — new contacts created.
+- **Failed** — rows that couldn't be imported (with the reason).
+- **Duplicates** — rows skipped because the phone already existed.
+
+If any rows fail, an **Import Errors** panel lists them (for example, *"Row 12:
+Phone — Invalid phone number format"*).
+
+## Import history
+
+Switch to the **Import History** tab to see past imports with their file name,
+status, and Success / Failed / Duplicates counts. Search by file name to find a
+specific import.
+
+<Note>
+  You can run up to **3 imports at the same time** per workspace. Wait for one to
+  finish if you hit the limit.
+</Note>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="What columns are required?">
+    **Phone** and **First Name**. Everything else is optional. Use **Download
+    Template** for the recommended layout.
+  </Accordion>
+  <Accordion title="Can I import tags per row?">
+    Not from a column. Tags are chosen in the **Tags & options** step and applied to
+    every contact in the import. See [Tags](/contacts/tags).
+  </Accordion>
+  <Accordion title="Can I import custom fields?">
+    Yes — create them first in **Settings → Module Setup**, then map your CSV
+    columns to them. (Lookup, user, and auto-number field types can't be imported.)
+  </Accordion>
+  <Accordion title="What happens to duplicate phone numbers?">
+    They're skipped and counted as duplicates; the existing contact isn't modified.
+  </Accordion>
+  <Accordion title="Can I import into a dynamic segment?">
+    No — only **static** segments can be an import target. Dynamic segments populate
+    themselves from rules. See [Segments](/contacts/segments).
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="'File does not appear to contain valid CSV text'">
+    The file isn't plain-text CSV (it may be an Excel `.xlsx`, or contain unsupported
+    characters). Re-export as **CSV UTF-8** and try again.
+  </Accordion>
+  <Accordion title="'File exceeds 10 MB limit' or too many rows">
+    Split large files into batches under 10 MB / 50,000 rows and import them
+    separately.
+  </Accordion>
+  <Accordion title="'Required fields missing'">
+    Map both **First Name** and **Phone** to CSV columns and make sure they're
+    enabled before continuing.
+  </Accordion>
+  <Accordion title="'Unknown custom field(s)'">
+    A column is mapped to a custom field that doesn't exist. Create it in **Settings
+    → Module Setup** first, then re-map.
+  </Accordion>
+  <Accordion title="Rows failed with 'Invalid phone number format'">
+    Phone values must be digits, spaces, hyphens, parentheses, or a leading `+`, up
+    to 20 characters. Clean the column and re-import those rows.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Next: organize with tags" icon="tag" href="/contacts/tags">
+  Label imported contacts for easy targeting.
+</Card>

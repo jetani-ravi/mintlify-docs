@@ -1,39 +1,145 @@
 ---
 title: "Contacts"
-description: "Create, edit, filter, and manage the people you message."
+description: "Create, edit, filter, and manage the people you message in EzyText."
 icon: "address-book"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Contacts — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Contacts are the people you reach through campaigns, conversations, and
+automations. The **Contacts** page (**Contacts** in the sidebar, at `/contacts`)
+lists everyone in your workspace with their tags, source, pipeline stage, and
+opt-in status.
 
-## Before you start
+<CardGroup cols={2}>
+  <Card title="Import from CSV" icon="file-import" href="/contacts/import-csv">
+    Bulk-add contacts with column mapping.
+  </Card>
+  <Card title="Build a segment" icon="filter" href="/contacts/segments">
+    Group contacts for targeted campaigns.
+  </Card>
+</CardGroup>
 
-Prerequisites and permissions needed for this task.
+## The contacts list
 
-## How-to
+The table shows these columns (you can show/hide most from the **Columns** menu):
+
+| Column | Description |
+| --- | --- |
+| **Name** | Avatar + first and last name |
+| **Phone** | With country flag; click to copy |
+| **Email** | Contact email |
+| **Tags** | Up to two tag chips, then a "+N" overflow |
+| **Source** | How the contact entered your list |
+| **Stage** | Pipeline stage badge |
+| **Opted-out** | "Opted in" / "Opted out" badge |
+| **Created At** | When the contact was added |
+
+Any active [custom fields](/contacts/custom-fields) appear as extra columns.
+
+## Add a contact
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Click Add Contact">
+    On the Contacts page, click **Add Contact**.
+  </Step>
+  <Step title="Fill in the details">
+    **First Name** and **Phone** are required. Optional: Last Name, Email, and an
+    **Address** section (street, line 2, city, state, postal code, country). You can
+    also add **Tags** and toggle **Opted out**.
+
+    Any [custom fields](/contacts/custom-fields) you've defined appear below the
+    standard fields.
+  </Step>
+  <Step title="Save">
+    Click save. The contact appears in the list immediately.
   </Step>
 </Steps>
+
+<Note>
+  **Stage** and **status** aren't set from the create form. New contacts start at
+  the **New Lead** stage; you change the stage later from the contact's detail page.
+</Note>
+
+## Edit, delete, and bulk actions
+
+- **Edit** — click the pencil icon on a row, or open the contact and edit.
+- **Delete** — click the trash icon and confirm. Deletes are **soft** (recoverable).
+- **Bulk delete** — select rows with the checkboxes, then **Delete** in the bulk bar.
+- **Change stage** — open a contact and pick a new **Stage** inline.
+- **Toggle opt-in** — open a contact and use the marketing opt-in switch.
+
+## Filter and search
+
+Use the **search** box to find by name, phone, or email. Click **Filters** to
+narrow the list by:
+
+- **Status** — Active, Invalid, Archived
+- **Source** — CSV Import, Manual, Web Form, Text Link, Inbound SMS, Google Ads, Meta Ads
+- **Stage** — New Lead, Engaged, Qualified, Appointment Booked, Customer, Lost, Archived
+- **Opted Out** — show only opted-out contacts
+- **Custom fields** — filter on any filterable custom field
+
+## The contact detail page
+
+Open a contact to see:
+
+- **Contact information** — email, phone, source, editable **stage**, created date.
+- **Tags** — add or remove tags inline.
+- **Communication preferences** — marketing opt-in toggle.
+- **Address** — full mailing address.
+- **Where this contact came from** — ad attribution (platform, campaign, lead form),
+  shown when the contact originated from [Google or Meta Ads](/channels/advertising).
+- **Activity** — a live timeline of everything that happened: created/updated,
+  tag changes, stage moves, conversation assignments, and ad-lead events.
+
+## Reference: statuses, stages, sources
+
+<Tabs>
+  <Tab title="Status">
+    - **Active** — a normal, sendable contact.
+    - **Invalid** — the number/email couldn't be used.
+    - **Archived** — set aside, excluded from active workflows.
+  </Tab>
+  <Tab title="Stage">
+    New Lead → Engaged → Qualified → Appointment Booked → Customer, plus **Lost**
+    and **Archived**. Stages are a simple pipeline you can filter and segment on.
+  </Tab>
+  <Tab title="Source">
+    CSV Import, Manual, Web Form, Text Link, Inbound SMS, Google Ads, Meta Ads —
+    recorded automatically based on how the contact was created.
+  </Tab>
+</Tabs>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Is deleting a contact permanent?">
+    No. Deletes are soft, so a contact is hidden rather than destroyed.
+  </Accordion>
+  <Accordion title="Can I export contacts to CSV?">
+    Exporting isn't available in the app today. You can filter and segment
+    in-product, and import via CSV.
+  </Accordion>
+  <Accordion title="How do opted-out contacts behave?">
+    They're excluded from campaign audiences automatically. See
+    [Opt-out management](/compliance/opt-out).
+  </Accordion>
+  <Accordion title="Where do custom fields come from?">
+    You define them in **Settings → Module Setup**. See
+    [Custom fields](/contacts/custom-fields).
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="A phone number won't save">
+    Phone numbers accept digits, spaces, hyphens, parentheses, and an optional
+    leading `+`, up to 20 characters. Remove any other characters.
+  </Accordion>
+  <Accordion title="I can't find a contact I imported">
+    Check the **Source = CSV Import** filter, and confirm the import finished
+    successfully in [Import history](/contacts/import-csv#import-history).
+  </Accordion>
+</AccordionGroup>

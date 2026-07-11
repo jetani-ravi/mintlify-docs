@@ -1,39 +1,92 @@
 ---
 title: "Tags"
-description: "Label contacts to organize, filter, and automate."
+description: "Label contacts with tags to organize, filter, and target them."
 icon: "tag"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Tags — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Tags are simple labels you attach to contacts — like `VIP`, `Trial`, or
+`Newsletter`. Use them to filter the contacts list, build [segments](/contacts/segments),
+and target campaigns. A contact can have any number of tags.
 
-## Before you start
+<Info>
+  **Where to manage them:** Settings → Tags (`/settings/tags`) &nbsp;·&nbsp;
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Manage tags
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Open Tags settings">
+    Go to **Settings → Tags**.
+  </Step>
+  <Step title="Create a tag">
+    Type a name in the search-or-create box (up to 50 characters) and click **Add**.
+    If a tag with that name already exists, the button stays disabled.
+  </Step>
+  <Step title="Rename or delete">
+    Use the pencil icon to rename a tag inline, or the trash icon to delete it.
+    Deleting a tag removes it from every contact — this can't be undone.
   </Step>
 </Steps>
+
+<Note>
+  Tag **colors are assigned automatically** from the tag name, so tags stay visually
+  consistent. There's no manual color picker; renaming a tag refreshes its color.
+</Note>
+
+## Assign tags to contacts
+
+You can add tags in several places:
+
+- **On a contact** — in the create/edit dialog, or the **Tags** section of the
+  contact detail page. Start typing to search existing tags or create a new one on
+  the fly.
+- **During CSV import** — apply tags to every imported contact in the **Tags &
+  options** step. See [Import contacts](/contacts/import-csv).
+
+<Tip>
+  You can create a tag from anywhere the tag input appears — you don't have to visit
+  Settings first.
+</Tip>
+
+## Use tags to target contacts
+
+- **Filter** the contacts list, then act on the results.
+- **Build a segment** with a "Has tag" rule for automatic, always-current audiences
+  — see [Segments](/contacts/segments).
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Can I set a tag's color?">
+    Not manually — EzyText derives a consistent color from the tag's name.
+  </Accordion>
+  <Accordion title="What happens when I delete a tag?">
+    It's removed from all contacts (and any join links or templates that used it).
+    This is permanent, so delete with care.
+  </Accordion>
+  <Accordion title="How are tags different from segments?">
+    A tag is a manual label you attach. A [segment](/contacts/segments) is a group —
+    it can be static (manually managed) or dynamic (auto-updated from rules, which
+    can include tags).
+  </Accordion>
+  <Accordion title="Can I bulk-apply a tag to many contacts at once?">
+    Apply tags in bulk during [CSV import](/contacts/import-csv), or add contacts to
+    a segment. Selecting rows in the list currently supports bulk delete.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="I can't add a tag — the Add button is disabled">
+    A tag with that exact name already exists (names are case-insensitive), or the
+    name is empty or over 50 characters. Adjust the name.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Build a segment" icon="filter" href="/contacts/segments">
+  Turn tags into automatic audiences.
+</Card>
