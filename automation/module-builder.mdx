@@ -1,39 +1,111 @@
 ---
 title: "Module builder"
-description: "Create custom data modules with your own fields and records."
+description: "Create custom data modules with your own sections, fields, and records."
 icon: "cubes"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Module builder — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+The module builder lets you extend EzyText's data model. You can add **custom
+fields** to built-in modules like Contacts, or create entirely **new modules**
+(record types) such as "Deals" or "Properties" — each with your own sections and
+fields. Manage everything at **Settings → Module Setup** (`/settings/module-setup`).
 
-## Before you start
+<Info>
+  **Difficulty:** Advanced
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## How it's organized
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Module" icon="cube">
+    A record type — for example, **Contacts** (built-in) or a custom **Deals**
+    module. Each has a name, singular/plural labels, icon, and color.
+  </Step>
+  <Step title="Section" icon="table-cells">
+    A titled group of fields within a module, with a chosen column count.
+  </Step>
+  <Step title="Field" icon="input-text">
+    A single data attribute — text, number, date, dropdown, and more.
   </Step>
 </Steps>
+
+## Create a custom field or module
+
+<Steps>
+  <Step title="Open Module Setup">
+    Go to **Settings → Module Setup**. The left rail lists your modules.
+  </Step>
+  <Step title="Add a field to a module">
+    Select a module, open the **Fields** tab, choose a section, and add a field.
+    Pick its **type**, set validation, options (for dropdowns), default value, and
+    help text.
+  </Step>
+  <Step title="Or create a new module">
+    Click **New module**, name it, and add sections and fields.
+  </Step>
+  <Step title="Arrange the layout">
+    Use the **Layout** tab to choose a record layout (single, two/three column, or
+    tabbed), pick header and list columns, and optionally enable a **kanban** view
+    grouped by a dropdown field.
+  </Step>
+</Steps>
+
+## Field types
+
+| Group | Types |
+| --- | --- |
+| **Text** | Text, Long text, URL, Email, Phone |
+| **Number** | Number, Currency, Percentage, Rating, Auto number |
+| **Date** | Date, Date & time, Timezone |
+| **Choice** | Dropdown, Multi-select, Checkbox |
+| **Relational** | Lookup (link to another record), User (link to a teammate) |
+
+Each field can be **required**, **unique**, **filterable**, **searchable**, or
+read-only, and can carry validation rules and conditional visibility (show/require
+a field based on another field's value).
+
+## Records
+
+Custom modules get their own records screens:
+
+- **List** — `/modules/<module>/records`, with your configured columns, filters,
+  and optional kanban view.
+- **Detail** — a single record laid out by your section/field design.
+
+## Modules and contacts
+
+**Contacts** (and **Tickets**) are built-in **system modules**. Their core fields
+are fixed, but you can add your own custom fields alongside them — those fields then
+appear on contacts as columns, form fields, filters, and [CSV import](/contacts/import-csv)
+targets. See [Custom fields](/contacts/custom-fields).
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="What's the difference between a custom field and a custom module?">
+    A **custom field** adds an attribute to an existing module (like Contacts). A
+    **custom module** is a whole new record type with its own fields and records.
+  </Accordion>
+  <Accordion title="Can I relate records to each other?">
+    Yes — use a **Lookup** field to link a record to another module's record, or a
+    **User** field to link to a team member.
+  </Accordion>
+  <Accordion title="Do custom fields work as message merge tags?">
+    No — merge tags are limited to standard contact fields. See
+    [Custom fields](/contacts/custom-fields).
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="I can't edit a field on Contacts">
+    Built-in system fields are locked. You can add and edit your own custom fields
+    alongside them, but not change the core ones.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Add custom fields to contacts" icon="table-columns" href="/contacts/custom-fields">
+  Extend contacts with your own data.
+</Card>

@@ -1,39 +1,99 @@
 ---
 title: "Knowledge base"
-description: "Give your AI agent source material to answer from."
+description: "Give your AI agent source material — files, text, and websites — to answer from."
 icon: "book"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Knowledge base — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+A knowledge base is a collection of sources your [AI agent](/automation/ai-agent)
+searches to answer accurately. You add files, pasted text, or websites; EzyText
+chunks and embeds them so the agent can retrieve the right passage. Find them under
+**Knowledge Bases** (`/knowledge-bases`).
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Create a knowledge base
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="New knowledge base">
+    Click **New knowledge base**, give it a **Name** and optional **Description**,
+    and create it.
+  </Step>
+  <Step title="Add sources">
+    Open the knowledge base and click **Add source**. Choose a source type (below).
+    Content is chunked and embedded automatically.
+  </Step>
+  <Step title="Wait for ingestion">
+    Each source shows an ingestion status. Once it reads **Completed**, the content
+    is searchable by your agent.
   </Step>
 </Steps>
+
+## Source types
+
+<Tabs>
+  <Tab title="File">
+    Upload a document — **PDF, DOCX, XLSX, Markdown, or plain text** — up to **20 MB**.
+    (Legacy `.xls` files aren't supported; re-save as `.xlsx`.)
+  </Tab>
+  <Tab title="Text">
+    Paste text directly, with a title. Up to **1 MB** of content.
+  </Tab>
+  <Tab title="Website">
+    Crawl a site from a root URL. Set **max pages** (up to 200) and **crawl depth**
+    (up to 5), and optionally include/exclude paths.
+  </Tab>
+</Tabs>
+
+## Ingestion status
+
+Sources move through **Queued → Extracting → Processing → Completed** (or
+**Completed with errors**, **Failed**, or **Cancelled**). The detail page shows
+source, document, and chunk counts, plus the embedding model. Use **Re-sync** on a
+source to re-fetch and re-ingest — unchanged content is skipped.
+
+## Link a knowledge base to an agent
+
+Attach knowledge bases from the AI agent builder's **Knowledge bases** step, and
+turn on **Enable knowledge retrieval** so the agent actually searches them. You can
+attach several knowledge bases to one agent.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="What file types are supported?">
+    PDF, DOCX, XLSX, Markdown, and plain text, up to 20 MB per file. Text paste is
+    capped at 1 MB.
+  </Accordion>
+  <Accordion title="How does the agent use it?">
+    When you enable knowledge retrieval, the agent searches the attached knowledge
+    bases for relevant passages and answers from them, optionally citing the source.
+  </Accordion>
+  <Accordion title="My website has many pages — will it all be crawled?">
+    Crawling is bounded by your **max pages** (up to 200) and **crawl depth** (up to
+    5). Use include/exclude paths to focus on the right sections.
+  </Accordion>
+  <Accordion title="I updated a source document. How do I refresh it?">
+    Use **Re-sync** on the source. EzyText re-ingests it and skips unchanged content.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="A source shows 'Failed' or 'Completed with errors'">
+    Check the file type and size (20 MB max), and that a website URL includes the
+    protocol (`https://`). Re-sync after fixing.
+  </Accordion>
+  <Accordion title="The agent isn't using my knowledge base">
+    Confirm the knowledge base is attached to the agent and **Enable knowledge
+    retrieval** is on, and that ingestion finished (**Completed**).
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Configure your AI agent" icon="robot" href="/automation/ai-agent">
+  Attach this knowledge base to an agent.
+</Card>

@@ -1,39 +1,148 @@
 ---
 title: "Workflow builder"
-description: "Automate multi-step journeys with triggers and actions."
+description: "Automate multi-step journeys with a visual trigger-and-action canvas."
 icon: "diagram-project"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Workflow builder — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Workflows automate what happens when something occurs — for example, "when a
+contact joins via a form, wait a day, then send a follow-up." You build them on a
+**visual canvas** by connecting a trigger to actions. Find them under
+**Workflows** in the sidebar (`/workflows`).
 
-## Before you start
+<Info>
+  **Difficulty:** Intermediate
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Build a workflow
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Create a workflow">
+    Click **Create workflow**. Start from a **template** or **from scratch**, then
+    name it.
+  </Step>
+  <Step title="Add a trigger">
+    Every workflow starts with a **trigger** — the event that begins the journey.
+  </Step>
+  <Step title="Add steps on the canvas">
+    Open the node picker (grouped into **Triggers, Tools, AI, Actions**) and connect
+    actions, conditions, and waits. Changes autosave.
+  </Step>
+  <Step title="Validate and publish">
+    Click **Validate** to check for issues, then **Publish** to make it live.
   </Step>
 </Steps>
+
+<Frame caption="The workflow canvas">
+  <img src="/images/automation/workflow-canvas.png" alt="Workflow builder canvas" />
+</Frame>
+
+## Triggers
+
+Start a workflow on any of these events:
+
+<AccordionGroup>
+  <Accordion title="Contacts & lists">
+    Contact created · Tag added · Tag removed · Segment entered · Segment left ·
+    Form submitted (join link or web form) · New advertising lead (Google/Meta)
+  </Accordion>
+  <Accordion title="Messaging">
+    SMS delivered · SMS failed · Email delivered · Email opened · Email link clicked
+    · Email bounced · Email unsubscribed
+  </Accordion>
+  <Accordion title="Scheduling">
+    Booking created · Booking rescheduled · Booking cancelled · Booking completed ·
+    Booking no-show
+  </Accordion>
+  <Accordion title="Other">
+    On a schedule (hourly/daily/weekly/monthly or custom cron) · Webhook received
+    (a unique URL external systems can call) · Manual start (you run it yourself)
+  </Accordion>
+</AccordionGroup>
+
+## Actions
+
+Steps that do something for the contact:
+
+- **Send SMS**, **Send email**, **Send booking link**
+- **Add tag** / **Remove tag**
+- **Add to segment** / **Remove from segment**
+- **Update custom field**, **Update stage**
+- **Notify team** (in-app), **Assign to member**
+- **Record conversion**
+- **Call webhook** (POST run data to an external URL)
+
+### AI steps
+
+- **AI decide** — ask a yes/no question and branch on the answer.
+- **AI extract** — pull typed fields out of text.
+- **AI summarize** — condense text for later steps.
+
+## Logic: conditions, branches, and waits
+
+- **Check if** — a condition with **Yes / No** paths (same rule vocabulary as
+  [segments](/contacts/segments)).
+- **Branch** — multiple labeled conditions, first match wins, plus "Everyone else".
+- **A/B split** — send contacts down weighted paths.
+- **Repeat for each** — loop over a list.
+- **Goal** — continue when a goal is met (also records a conversion).
+- **Wait** — pause **for a set time**, **until a date**, or **until something
+  happens** (contact replies, opens an email, or clicks a link), with an optional
+  give-up timeout.
+
+## Runs and analytics
+
+- **Runs** (`/workflows/:id/runs`) — every execution with its status
+  (**Running, Waiting, Completed, Failed, Cancelled**), outcome, and a
+  step-by-step trace. Export to CSV.
+- **Analytics** (`/workflows/:id/analytics`) — total runs, active now, completed,
+  failed, success rate, conversions, a runs-over-time chart, and a step-performance
+  funnel.
+
+## Publishing and status
+
+Workflows are **Draft**, **Published**, or **Archived**. **Publish** activates a
+workflow; **Unpublish** returns it to Draft. Use the **Test** toggle to simulate a
+run without sending real messages.
+
+<Note>
+  A workflow that fails 10 runs in a row is automatically unpublished to protect
+  your contacts — fix the issue and re-publish.
+</Note>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Is there a 'contact replied' trigger?">
+    Not as a trigger. Use a **Wait → until something happens → Contact replies** step
+    inside a workflow to react to replies.
+  </Accordion>
+  <Accordion title="Do tests send real messages?">
+    No. Test mode simulates side-effecting steps, so no SMS or email goes out.
+  </Accordion>
+  <Accordion title="Can a workflow call my own system?">
+    Yes — use the **Call webhook** action to POST run data to your endpoint, and the
+    **Webhook received** trigger to start a workflow from an external event.
+  </Accordion>
+  <Accordion title="How do I stop a live workflow?">
+    Unpublish it (returns to Draft). In-flight runs finish; no new runs start.
   </Accordion>
 </AccordionGroup>
 
 ## Troubleshooting
 
-Common errors and how to resolve them will be listed here.
+<AccordionGroup>
+  <Accordion title="Publish is disabled">
+    Run **Validate** — the checklist shows what's incomplete (for example, an
+    unconfigured node or a missing connection). Fix those, then publish.
+  </Accordion>
+  <Accordion title="My workflow was auto-unpublished">
+    It hit 10 consecutive failed runs. Open the **Runs** page to see the failure
+    reason, fix the step, and re-publish.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Add AI to your inbox" icon="robot" href="/automation/ai-agent">
+  Let an AI agent handle replies.
+</Card>
