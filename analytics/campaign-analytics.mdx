@@ -1,39 +1,59 @@
 ---
 title: "Campaign analytics"
-description: "Delivery, reply, and cost metrics per campaign."
+description: "Track delivery, cost, and engagement for each campaign."
 icon: "chart-line"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Campaign analytics — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Every [campaign](/campaigns/overview) has its own analytics on its detail page,
+with **Overview** and **Executions** tabs.
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
+## Summary metrics
 
-## How-to
+The Overview tab shows:
 
-<Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
-  </Step>
-</Steps>
+- **Queued**, **Sent** (% of recipients), **Delivered** (% of sent), **Failed**,
+  **Cancelled**, and **Total cost**.
+- For **email** campaigns: opens, clicks, bounces, unsubscribes, and spam reports.
+- For **SMS** campaigns: link-click analytics.
+
+## Executions and messages
+
+For scheduled and recurring campaigns, the **Executions** tab shows per-run metrics
+and a **Messages** table with each recipient's From/To numbers, status, links
+opened, and sent time.
+
+Per-recipient statuses: **Queued, Processing, Sent, Delivered, Undelivered, Failed,
+Cancelled, Rejected**.
+
+<Note>
+  Replies are tracked in the [Inbox](/inbox/overview), not on the campaign
+  dashboard — campaign analytics focus on delivery, cost, and (for email)
+  engagement.
+</Note>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Why isn't there a reply rate on the campaign?">
+    Reply handling lives in the unified [Inbox](/inbox/overview). The campaign view
+    reports delivery, cost, and engagement.
+  </Accordion>
+  <Accordion title="How is cost calculated for SMS?">
+    Per message segment (a 160-character SMS is one segment). The total cost card sums
+    the campaign's segments.
+  </Accordion>
+  <Accordion title="Can I create a segment from campaign responders?">
+    Not directly from a campaign today. Use tags or the
+    [poll → segment](/campaigns/polls) flow to build follow-up audiences.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<Card title="Dashboard" icon="gauge" href="/analytics/dashboard">
+  See the big picture.
+</Card>
