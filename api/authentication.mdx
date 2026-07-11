@@ -1,0 +1,65 @@
+---
+title: "Authentication"
+description: "Authenticate API requests with an organization API key."
+icon: "key"
+---
+
+## Overview
+
+The API accepts two kinds of credentials on the same endpoints:
+
+- **Organization API key** (`et_live_…`) — for server-to-server integrations. Acts
+  with **Owner** scope for your workspace.
+- **JWT** — the session token used by the app itself (first-party calls).
+
+For integrations, use an **API key**.
+
+## Create an API key
+
+Create and manage keys in the app at **Settings → API keys** — see
+[API keys](/developers/api-keys). The full secret is shown **once** on creation;
+store it securely.
+
+<Warning>
+  An API key has **Owner-level** access to your workspace. Treat it like a password:
+  never commit it to source control or expose it in client-side code. Rotate it if
+  it may have leaked.
+</Warning>
+
+## Send the key
+
+Pass the key on every request using **either** header:
+
+<CodeGroup>
+```bash Authorization header
+curl https://<your-api-host>/contacts \
+  -H "Authorization: Bearer et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+```bash X-API-Key header
+curl https://<your-api-host>/contacts \
+  -H "X-API-Key: et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+</CodeGroup>
+
+A request is treated as an API-key request when the `X-API-Key` header is present or
+the bearer token starts with `et_`.
+
+## Scope and limits
+
+- **Scope:** every key acts as an **Owner** — there are no granular per-key scopes
+  today. Limit exposure by rotating keys and issuing separate keys per integration.
+- **Session-only endpoints:** API keys can't call the **Inbox**, or manage **API
+  keys** and **webhooks** — those require a signed-in user (they return `403`).
+- **Rate limits** apply per workspace — see [Conventions](/api/conventions#rate-limits).
+
+## Errors
+
+- `401 Unauthorized` — missing, malformed, revoked, or expired key.
+- `403 Forbidden` — key used on a session-only endpoint.
+
+See the full error shape in [Conventions](/api/conventions#errors).
+
+<Card title="Conventions" icon="list-check" href="/api/conventions">
+  Response envelope, pagination, and rate limits.
+</Card>

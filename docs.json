@@ -175,11 +175,24 @@
         "groups": [
           {
             "group": "Developers",
+            "pages": ["developers/api-keys", "developers/webhooks"]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Getting started",
             "pages": [
-              "developers/api-keys",
-              "developers/webhooks",
-              "developers/api-reference"
+              "api/introduction",
+              "api/authentication",
+              "api/conventions"
             ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": ["api/resources"]
           }
         ]
       },
