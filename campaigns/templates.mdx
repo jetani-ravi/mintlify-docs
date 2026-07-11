@@ -1,39 +1,91 @@
 ---
 title: "Message templates"
-description: "Reusable SMS and email templates with merge tags."
+description: "Save reusable SMS templates with merge tags for campaigns, welcome flows, and text links."
 icon: "file-lines"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Message templates — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Templates are reusable message bodies you can save once and use across the
+product. EzyText's template library covers **SMS templates**, managed at
+**Settings → SMS Templates** (`/settings/sms-templates`).
 
-## Before you start
+<Info>
+  **Difficulty:** Beginner
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Create an SMS template
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Open SMS Templates">
+    Go to **Settings → SMS Templates** and click **Create template**.
+  </Step>
+  <Step title="Fill in the details">
+    | Field | Required | Notes |
+    | --- | --- | --- |
+    | **Template name** | Yes | Up to 150 characters, e.g. "Black Friday Sale" |
+    | **Description** | No | Internal notes, not shown to recipients |
+    | **Category** | Yes | Marketing, Transactional, Welcome, Reminder, Promotional, Notification, General |
+    | **Tags** | No | Organize your library |
+    | **Message body** | Yes | Up to 1,600 characters, with merge tags |
+  </Step>
+  <Step title="Add variables">
+    Use **Insert variable** (or type `{`) to add merge tags like `{{first_name}}`.
+    The footer shows the variable count, character count, and SMS segments, with a
+    live preview using sample values.
+  </Step>
+  <Step title="Save">
+    Your template appears in the library, filterable by category and status.
   </Step>
 </Steps>
+
+## Merge tags
+
+Templates support the same 12 standard merge tags as campaigns:
+
+`first_name`, `last_name`, `full_name`, `phone`, `email`, `street_address`,
+`address_line_2`, `city`, `state`, `postal_code`, `country`, `full_address`
+
+<Tip>
+  Add a fallback for empty values: `{{first_name|"there"}}`.
+</Tip>
+
+## Where templates are used
+
+SMS templates are referenced by other flows rather than picked inside the campaign
+composer:
+
+- **[Text-link join](/campaigns/join-links)** — the welcome/keyword message.
+- **[Workflows](/automation/workflow-builder)** — send-message steps.
+
+<Note>
+  Built-in **system templates** open in read-only mode. Use **Clone to use** to make
+  an editable copy for your workspace.
+</Note>
+
+## Status
+
+Templates are **Active** or **Archived**. Archive a template from its card or edit
+view to retire it without deleting.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Can I pick a template while creating a campaign?">
+    The campaign composer offers the **Variables** (merge tag) dropdown rather than a
+    template picker. Templates are used by text links and workflows; copy a
+    template's body into a campaign if you want to reuse it there.
+  </Accordion>
+  <Accordion title="Can I use custom fields in a template?">
+    No — only the standard merge tags are supported. See
+    [Custom fields](/contacts/custom-fields).
+  </Accordion>
+  <Accordion title="What are categories for?">
+    Categories help you organize and filter your library (Marketing, Transactional,
+    Welcome, and so on). They don't change how a message sends.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<Card title="Send a campaign" icon="paper-plane" href="/campaigns/overview">
+  Put your message to work.
+</Card>
