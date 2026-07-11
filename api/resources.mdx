@@ -1,0 +1,156 @@
+---
+title: "Resources"
+description: "Endpoints for contacts, segments, tags, campaigns, polls, templates, and links."
+icon: "cubes"
+---
+
+A curated overview of the main resources an [API key](/api/authentication) can call.
+Paths are relative to your API host and have **no `/api` prefix**. For complete
+request/response schemas and a try-it console, use the interactive docs at `/docs`.
+
+<Info>
+  All endpoints share the same [response envelope, pagination, and errors](/api/conventions).
+  Path `:id` values are UUIDs.
+</Info>
+
+## Example request
+
+<CodeGroup>
+```bash Create a contact
+curl -X POST https://<your-api-host>/contacts \
+  -H "Authorization: Bearer et_live_…" \
+  -H "Content-Type: application/json" \
+  -d '{ "firstName": "Ada", "phone": "+14155550100", "tagIds": [] }'
+```
+
+```json Response
+{
+  "success": true,
+  "data": { "id": "b1e6…" }
+}
+```
+</CodeGroup>
+
+## Contacts
+
+Base path `/contacts`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /contacts` | Create a contact. Body: `firstName`*, `phone`*, `lastName?`, `email?`, `status?`, `tagIds?`, address fields, `isOptedOut?`. |
+| `GET /contacts` | List (paginated). Query: `search`, `status`, `source`, `stage`, `isOptedOut`, `tagIds`, `createdFrom/To`, `sortBy`, `sortOrder`, `customFieldFilters`. |
+| `GET /contacts/:id` | Get one. |
+| `GET /contacts/:id/activity` | Activity timeline (cursor: `limit`, `cursor`). |
+| `PATCH /contacts/:id` | Update (partial). |
+| `PATCH /contacts/:id/stage` | Set lifecycle stage. Body: `stage`*, `reason?`. |
+| `DELETE /contacts/:id` | Soft delete. |
+| `POST /contacts/bulk-delete` | Body: `ids`* (1–500). |
+| `POST /contacts/bulk-edit` | Body: `ids`*, `status?`, `addTagIds?`, `removeTagIds?`. |
+| `POST /contacts/:id/tags` | Add tags. Body: `tagIds`*. |
+| `DELETE /contacts/:id/tags/:tagId` | Remove a tag. |
+
+## Segments
+
+Base path `/segments`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /segments` | Create. Body: `name`*, `type`* (`STATIC`/`DYNAMIC`), `description?`, `rules?` (required for dynamic), `contactIds?` (static). |
+| `POST /segments/preview` | Preview rule matches. Body: `rules`*, `page?`, `limit?`, `countOnly?`. |
+| `GET /segments` | List (paginated). Query: `search`, `type`, `sortBy`, `sortOrder`. |
+| `GET /segments/:id` | Get one. |
+| `PATCH /segments/:id` | Update. |
+| `DELETE /segments/:id` | Soft delete. |
+| `POST /segments/:id/clone` | Clone. Body: `name?`. |
+| `POST /segments/:id/contacts` | Add contacts (static). Body: `contactIds`*. |
+| `DELETE /segments/:id/contacts` | Remove contacts (static). Body: `contactIds`*. |
+| `GET /segments/:id/contacts` | List members (paginated). |
+| `GET /segments/:id/preview` | Preview dynamic members (paginated). |
+
+## Tags
+
+Base path `/tags`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /tags` | Create. Body: `name`* (1–50). |
+| `GET /tags` | List (paginated). Query: `search`, `sortBy`, `sortOrder`. |
+| `GET /tags/:id` | Get one. |
+| `PATCH /tags/:id` | Update. |
+| `DELETE /tags/:id` | Delete. |
+
+## Campaigns
+
+Base path `/campaigns`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /campaigns` | Create. Body: `name`*, `type`*, `channel`*, `messageTemplate`*, `segmentId`*, `channelIdentityIds`*, plus schedule/recurrence fields. |
+| `GET /campaigns` | List (paginated; `meta` adds status counts). Query: `statuses`, `types`, `segmentId`, `q`, `sortBy`, `sortOrder`. |
+| `GET /campaigns/:id` | Detail. |
+| `PATCH /campaigns/:id` | Update. |
+| `POST /campaigns/:id/pause` · `/resume` · `/cancel` · `/end-recurrence` | Lifecycle actions. |
+| `DELETE /campaigns/:id` | Soft delete (`204`). |
+| `POST /campaigns/estimate` | Cost estimate. Body: `segmentId`*, `template`*, `channel`*. |
+| `GET /campaigns/:id/analytics` · `/click-analytics` · `/link-analytics` | Analytics. |
+| `GET /campaigns/:id/messages` | Per-recipient messages (paginated). |
+| `GET /campaigns/:campaignId/executions` | Executions of a scheduled/recurring campaign. |
+
+## Polls
+
+Base path `/polls`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /polls` | Create. Body: `name`*, `questionTemplate`*, `segmentId`*, `channelIdentityIds`*, `options`* (2–10), `dispatchType`*, `allowMultipleOptions?`, schedule fields. |
+| `GET /polls` | List (paginated). |
+| `GET /polls/:id` | Detail. |
+| `POST /polls/:id/close` · `/cancel` | Lifecycle actions. |
+| `DELETE /polls/:id` | Soft delete. |
+| `GET /polls/:id/analytics` | Analytics. |
+| `GET /polls/:pollId/votes` | List votes (paginated). |
+| `POST /polls/:id/create-segment` | Build a segment from responders. Body: `name`*, `selector`* (`voted_options`/`voted_any`/`did_not_vote`), `optionIds?`. |
+
+## SMS templates
+
+Base path `/sms-templates`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /sms-templates` | Create. Body: `name`*, `category`*, `body`*, `type?`, `tagIds?`. |
+| `GET /sms-templates` | List (paginated). Query: `search`, `category`, `status`, `type`, `includeSystem`. |
+| `GET /sms-templates/:id` | Get one. |
+| `PATCH /sms-templates/:id` | Update. |
+| `DELETE /sms-templates/:id` | Soft delete. |
+| `POST /sms-templates/:id/clone` | Clone. |
+
+## Links
+
+**Join links** — base path `/join-links`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /join-links` | Create. Body: `type`*, `name`*, `slug?`, `segmentId?`, `tagIds?`, plus channel/consent/OTP fields. |
+| `GET /join-links` | List (paginated). |
+| `GET /join-links/:id` · `/analytics` · `/submissions` | Detail and analytics. |
+| `PATCH /join-links/:id` · `DELETE /join-links/:id` | Update / soft delete. |
+
+**Short links** — base path `/short-links`.
+
+| Method & path | Description |
+| --- | --- |
+| `POST /short-links` | Create. Body: `originalUrl`* (https), `title?`, `expiresAt?`. |
+| `GET /short-links` | List (paginated). |
+| `GET /short-links/:id` · `/analytics` | Detail and analytics. |
+| `PATCH /short-links/:id` · `DELETE /short-links/:id` | Update / soft delete. |
+
+## Session-only surfaces
+
+These reject API keys and require a signed-in session:
+
+- **Inbox** (`/inbox/*`) — conversations, messages, notes.
+- **API key management** (`/api-keys/*`) and **webhooks** (`/webhook-endpoints/*`).
+
+<Card title="Full interactive reference" icon="book-open" href="/docs">
+  Every endpoint with schemas and a try-it console, at <code>/docs</code>.
+</Card>

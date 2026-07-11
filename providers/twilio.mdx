@@ -1,0 +1,198 @@
+---
+title: "Connect Twilio"
+description: "Connect your Twilio account to send and receive SMS, then set up messaging services, numbers, and 10DLC."
+icon: "plug"
+---
+
+<Info>
+  **Time to complete:** ~10 minutes to connect &nbsp;·&nbsp; **Difficulty:** Beginner
+</Info>
+
+## Overview
+
+Twilio is one of two SMS providers EzyText supports (the other is
+[Telnyx](/providers/telnyx)). Connecting Twilio lets EzyText send text messages
+from your Twilio numbers, receive replies in your [Inbox](/inbox/overview), and
+manage [A2P 10DLC](/compliance/a2p-10dlc) registration for you.
+
+<Note>
+  Only **one SMS provider can be active at a time** per workspace. If you already
+  have Telnyx connected, connecting Twilio will prompt you to switch — the previous
+  provider's numbers and messaging services are removed on switch.
+</Note>
+
+## Before you start
+
+You need:
+
+- A [Twilio account](https://www.twilio.com) with at least one phone number, or
+  funds to buy one.
+- Your Twilio **Account SID** and **Auth Token** (both on the Twilio Console
+  dashboard under **Account Info**).
+- The **Manage channels** permission in EzyText (Owner or Admin).
+
+<Tip>
+  You can connect with a Twilio trial number to test end-to-end, then complete
+  [10DLC registration](/compliance/a2p-10dlc) before sending to US numbers at volume.
+</Tip>
+
+## Connect Twilio
+
+<Steps>
+  <Step title="Open the Twilio channel">
+    In EzyText, go to **Settings → Channels**. Under **SMS**, find the **Twilio**
+    card ("Enterprise SMS and MMS via Twilio") and click **Configure**.
+
+    <Frame caption="Settings → Channels → Twilio">
+      <img src="/images/providers/twilio-card.png" alt="Twilio provider card in Channel settings" />
+    </Frame>
+  </Step>
+  <Step title="Enter your credentials">
+    On the **Connect** tab, fill in:
+
+    | Field | Where to find it | Format |
+    | --- | --- | --- |
+    | **Account SID** | Twilio Console → Account Info | Starts with `AC`, 34 characters |
+    | **Auth Token** | Twilio Console → Account Info | 32 characters (kept masked) |
+
+    EzyText validates the format as you type — the Account SID must start with
+    `AC` and the Auth Token must be 32 characters.
+  </Step>
+  <Step title="Connect & save">
+    Click **Connect & Save Credentials**. EzyText makes a live call to Twilio to
+    verify the credentials before saving. On success you'll see
+    **"Channel connected successfully"** and the setup wizard opens automatically.
+
+    <Frame caption="Connect tab with saved credentials">
+      <img src="/images/providers/twilio-connect.png" alt="Twilio Connect tab" />
+    </Frame>
+  </Step>
+</Steps>
+
+## Finish setup (messaging service, numbers, 10DLC)
+
+After connecting, the **Set Up Your Channel** wizard walks you through four steps
+in the recommended order:
+
+<Steps>
+  <Step title="10DLC Brand" icon="shield-check">
+    Register the business that will send messages. Click **Register 10DLC Brand**.
+    You can't advance until a brand exists. See the full field list in
+    [A2P 10DLC](/compliance/a2p-10dlc).
+  </Step>
+  <Step title="Service" icon="gear">
+    Select one or more **messaging services**, or click **Create Service** and
+    give it a name (for example, "My SMS Service").
+  </Step>
+  <Step title="10DLC Campaign" icon="file-lines">
+    Register a campaign linked to your service, or **Skip to Numbers** (a campaign
+    is strongly recommended for compliant A2P sending, but not required to finish).
+  </Step>
+  <Step title="Numbers" icon="hashtag">
+    Assign phone numbers to your messaging service, or **Buy New Number**.
+  </Step>
+</Steps>
+
+Click **Finish Setup** to save. You can revisit any of these from the **Service**,
+**Numbers**, and **Brand & Campaign** tabs on the Twilio channel page at any time.
+
+<Tip>
+  In a hurry? **Skip Setup** auto-selects all discovered messaging services so you
+  can send immediately, then come back to register 10DLC before scaling up.
+</Tip>
+
+### Buy a phone number
+
+From the **Numbers** step (or tab), click **Buy New Number**:
+
+1. Choose a **Country** (required).
+2. Optionally narrow by **Area Code** or a **Contains** pattern (for example, `+1914`).
+3. Pick **Capabilities** — **SMS**, **MMS**, **Voice** (all selected by default).
+4. Click **Search Numbers**, then **Buy** on a result and confirm the purchase.
+
+Numbers you buy from within a setup step are attached to the selected messaging
+service automatically.
+
+## Webhooks
+
+You don't configure webhooks manually. When you finish setup, EzyText registers
+its own webhook URLs with Twilio for each messaging service:
+
+- Inbound messages: `https://<your-app-domain>/webhooks/sms/twilio`
+- Delivery status: `https://<your-app-domain>/webhooks/sms/twilio/status-callback`
+
+Inbound webhooks are signature-verified (Twilio HMAC via `x-twilio-signature`).
+
+## Channel status
+
+The channel header shows one of:
+
+- <Icon icon="circle-check" iconType="solid" color="#16a34a" /> **Active** — connected and able to send.
+- **Disconnected** — no valid credentials.
+- **Error** — credentials or a health check failed.
+
+Each setup tab also shows a green check when complete or an amber warning when
+something is still required (for example, "Brand registration required").
+
+To disconnect, use **Disconnect** on the channel header. This makes all numbers
+unusable and pauses active campaigns using the channel, so confirm carefully.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Where do I find my Account SID and Auth Token?">
+    Both are on your Twilio Console dashboard under **Account Info**. The Account
+    SID starts with `AC`; the Auth Token is a 32-character secret you can reveal
+    and copy.
+  </Accordion>
+  <Accordion title="Can I use both Twilio and Telnyx at the same time?">
+    No. Only one SMS provider is active per workspace. Connecting a second provider
+    prompts you to switch, which removes the first provider's numbers and services
+    from EzyText.
+  </Accordion>
+  <Accordion title="Do I have to register 10DLC to send?">
+    You can send with a connected channel, but US carriers require
+    [A2P 10DLC registration](/compliance/a2p-10dlc) for reliable delivery to US
+    mobile numbers. Register your brand and campaign before sending at volume.
+  </Accordion>
+  <Accordion title="Are my credentials stored securely?">
+    Yes. Credentials are encrypted at rest. After saving, the Connect tab shows the
+    Account SID and a masked Auth Token only.
+  </Accordion>
+  <Accordion title="Can I change providers later?">
+    Yes, but switching wipes the current provider's numbers and messaging services
+    in EzyText. Your campaigns using that channel are paused until you reconfigure.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Invalid credentials' when connecting">
+    Twilio rejected the Account SID / Auth Token pair. Re-copy both from the Twilio
+    Console (watch for trailing spaces), confirm the Auth Token is the current one
+    (not a rotated/old value), and try again.
+  </Accordion>
+  <Accordion title="'Must be a valid Twilio Account SID (starts with AC)'">
+    The SID field must match `AC` followed by 32 hexadecimal characters. You likely
+    pasted an API Key SID (`SK…`) or a partial value — use the **Account SID** from
+    Account Info.
+  </Accordion>
+  <Accordion title="'Must be a 32-character auth token'">
+    The Auth Token must be exactly 32 characters. Reveal and re-copy the full token.
+  </Accordion>
+  <Accordion title="Customer Profile / A2P Trust Product is not compliant">
+    Your Twilio TrustHub profile isn't approved yet. Complete Twilio's business
+    profile verification in the Twilio Console, then retry brand registration.
+    See [A2P 10DLC troubleshooting](/compliance/a2p-10dlc#troubleshooting).
+  </Accordion>
+  <Accordion title="Messages send but replies don't appear">
+    Replies arrive via webhook. Finish the setup wizard so EzyText can register its
+    webhook URLs on your messaging service, and make sure the number is attached to
+    a managed messaging service.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Next: register for 10DLC" icon="shield-check" href="/compliance/a2p-10dlc">
+  Required for reliable US SMS delivery.
+</Card>

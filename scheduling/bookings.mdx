@@ -1,0 +1,70 @@
+---
+title: "Bookings"
+description: "View, reschedule, cancel, and manage the meetings people book with you."
+icon: "calendar-days"
+---
+
+## Overview
+
+Bookings are the meetings people schedule through your
+[meeting types](/scheduling/meeting-types). Manage them under **Bookings**
+(`/bookings`).
+
+<Info>
+  **Difficulty:** Beginner
+</Info>
+
+## The bookings list
+
+Each booking shows the **invitee**, **meeting type**, **host**, **when**, and
+**status**. Filter by status, meeting type, host, and date range. Times display in
+your workspace timezone.
+
+## Booking statuses
+
+**Scheduled**, **Confirmed**, **Completed**, **Cancelled**, **Rescheduled**, and
+**No-show**. Completed, Cancelled, and No-show are final.
+
+## Actions
+
+Open a booking to see invitee details and question answers. Depending on status you
+can:
+
+- **Reschedule** — pick a new day and slot.
+- **Cancel** — with an optional reason (the invitee is notified).
+- **Mark completed** or **Mark no-show** — available once the start time has passed.
+
+<Note>
+  Confirmed bookings are auto-marked **Completed** 12 hours after they end if you
+  haven't set a status.
+</Note>
+
+## The invitee experience
+
+When someone opens your booking link, they pick a meeting type and time, choose
+their timezone, fill in their details (and your custom questions), agree to the
+consent checkbox, and confirm. They get a confirmation with an **Add to Google
+Calendar** option and a **Manage booking** link to reschedule or cancel themselves.
+
+Bookings send email and SMS confirmations, reminders, and reschedule/cancel notices
+automatically.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can invitees reschedule themselves?">
+    Yes — the confirmation includes a **Manage booking** link where they can
+    reschedule or cancel.
+  </Accordion>
+  <Accordion title="Do bookings appear on my calendar?">
+    Yes — see the [Calendar](/scheduling/calendar) view, and connect an external
+    calendar to sync events out. See [Calendar integrations](/scheduling/calendar-integrations).
+  </Accordion>
+  <Accordion title="Can I trigger a workflow when someone books?">
+    Yes — use the **Booking created** trigger in a [workflow](/automation/workflow-builder).
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Calendar" icon="calendar" href="/scheduling/calendar">
+  See all bookings on one calendar.
+</Card>

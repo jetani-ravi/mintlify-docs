@@ -1,55 +1,62 @@
-# Mintlify Starter Kit
+# EzyText Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Customer-facing help center for the EzyText text-campaign platform, built with
+[Mintlify](https://mintlify.com). Every page is grounded in the actual product
+modules (backend `src/modules/*`, frontend `src/features/*`).
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
-
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
+## Local preview
 
 ```bash
-npx skills add https://mintlify.com/docs
+npm i -g mint      # Mintlify CLI
+mint dev           # serves docs at http://localhost:3000
 ```
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
+Validate links and structure before pushing:
 
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
-npm i -g mint
+```bash
+mint broken-links
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Publishing is automatic: pushing to the default branch deploys via the Mintlify
+GitHub app.
 
-```
-mint dev
-```
+## Information architecture
 
-View your local preview at `http://localhost:3000`.
+Navigation lives in [`docs.json`](./docs.json) as `navigation.tabs → groups → pages`.
+Each nav leaf maps to one `.mdx` file (extensionless, root-relative).
 
-## Publishing changes
+| Tab | Covers | Backing modules |
+| --- | --- | --- |
+| Getting Started | Onboarding, workspace, team, auth | `auth`, `organization`, `invitation`, `user/role/permission` |
+| Channels | SMS / Email / Advertising overview | `channel-core`, `sms-channel`, `email-channel`, `advertising` |
+| Providers | Twilio, Telnyx, Gmail, M365, SMTP, Google/Meta Ads | `sms-channel/providers`, `email-settings`, `advertising/providers` |
+| Compliance | A2P 10DLC, toll-free, opt-in, opt-out | `channels` 10DLC, `opt-in`, `opt-out` |
+| Contacts | Contacts, import, custom fields, tags, segments | `contacts`, `contact-import`, `tags`, `segments` |
+| Campaigns | Campaigns, templates, quick messages, polls, links | `campaigns`, `*-templates`, `polls`, `short-links`, `join-links` |
+| Automation & AI | Workflow builder, AI agent, knowledge base, module builder | `workflows`, `ai-agents`, `knowledge-base`, `module-builder` |
+| Inbox | Unified inbox, tickets | `inbox`, `tickets` |
+| Scheduling | Calendar, meeting types, availability, bookings | `calendar*`, `meeting-types`, `bookings` |
+| Analytics & Billing | Dashboard, analytics, attribution, wallet/billing | `dashboard`, `advertising`, `platform-billing` |
+| Developers | API keys, webhooks, API reference | `api-keys`, `webhooks` |
+| Support | FAQ, troubleshooting, release notes | — |
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+## Page template
 
-## Need help?
+Every module page follows the same shape so customers learn one layout:
 
-### Troubleshooting
+1. **Overview** — what it is, when to use it (+ difficulty/time hints).
+2. **Before you start** — prerequisites and permissions.
+3. **How-to** — `<Steps>` grounded in the real UI route.
+4. **FAQ** — `<AccordionGroup>`.
+5. **Troubleshooting** — common errors and fixes.
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+## Screenshots
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+Images are referenced as `/images/<section>/<name>.png` inside `<Frame>` blocks.
+Drop real captures into `images/` matching those paths and they resolve. Pages
+currently ship without images; add them incrementally — see `images/README.md`.
+
+## Content status
+
+Pages carrying a `This guide is being expanded` `<Note>` are structural stubs
+awaiting full content. Track progress by phase in the project plan.

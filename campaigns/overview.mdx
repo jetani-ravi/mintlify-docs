@@ -1,0 +1,157 @@
+---
+title: "Campaigns"
+description: "Create, schedule, send, and analyze SMS and email broadcast campaigns."
+icon: "paper-plane"
+---
+
+<Info>
+  **Time to complete:** ~10 minutes &nbsp;·&nbsp; **Difficulty:** Beginner
+</Info>
+
+## Overview
+
+A campaign sends one message to many contacts. EzyText supports **SMS** and
+**email** campaigns, sent immediately, scheduled for later, or on a recurring
+schedule. Find them under **Campaigns** in the sidebar (`/campaigns`).
+
+<Note>
+  Before sending SMS, connect a [provider](/channels/sms) and — for US traffic —
+  complete [10DLC registration](/compliance/a2p-10dlc).
+</Note>
+
+## The campaigns list
+
+Filter by status using the tabs (each shows a live count): **All**, **Scheduled**,
+**Running**, **Paused**, **Completed**, **Failed**, **Cancelled**. Columns include
+Campaign, Status, Segment, Delivery progress, Date, and Cost.
+
+Row actions depend on status:
+
+- **Pause** — while a campaign is Running.
+- **Resume** — while a campaign is Paused.
+- **Cancel** — before a campaign finishes (queued messages are cancelled; already-sent stay sent).
+- **Delete** — once a campaign is Completed, Failed, or Cancelled (soft delete).
+
+<Note>
+  Campaign statuses are **Scheduled, Active (shown as "Running"), Paused,
+  Completed, Failed, Cancelled**. There's no draft state — creating a campaign
+  sends or schedules it.
+</Note>
+
+## Create a campaign
+
+<Steps>
+  <Step title="Choose a channel" icon="layer-group">
+    Pick **Text message** (SMS) or **Email**. You can change it later with **Change
+    channel** (which clears channel-specific fields).
+  </Step>
+  <Step title="Sender" icon="hashtag">
+    **SMS:** select one or more phone numbers — EzyText rotates them round-robin
+    across recipients. **Email:** select one or more verified senders. Give the
+    campaign a **name** in the summary panel (defaults to "Untitled Campaign").
+  </Step>
+  <Step title="Message" icon="pen">
+    Compose your message. Insert **variables** (merge tags) from the toolbar, watch
+    the **character counter** and SMS segment count, and toggle **link tracking** on
+    detected URLs. The summary panel shows an **estimated cost**.
+
+    For email, you also set a **Subject**, optional **Preview text**, rich content,
+    and can **send a test email**.
+  </Step>
+  <Step title="Audience" icon="filter">
+    Select the **segment** to send to. The recipient count updates as you choose.
+    See [Segments](/contacts/segments).
+  </Step>
+  <Step title="Schedule" icon="clock">
+    Choose **Send Now**, **Schedule for Later** (with date, time, and timezone), or
+    **Recurring** (SMS only — daily/weekly/monthly with an end date or max runs).
+  </Step>
+</Steps>
+
+Click **Send Campaign** in the summary panel when the status badge reads **Ready**.
+
+<Note>
+  Audience is **one segment per campaign** today (multi-segment is on the roadmap),
+  and there's no segment-level exclude. Use dynamic-segment rules to shape your
+  audience — see [Segments](/contacts/segments).
+</Note>
+
+### Merge tags
+
+Personalize messages with these variables, written as `{{tag}}`:
+
+`first_name`, `last_name`, `full_name`, `phone`, `email`, `street_address`,
+`address_line_2`, `city`, `state`, `postal_code`, `country`, `full_address`
+
+You can add a fallback: `{{first_name|"there"}}` sends "there" when the field is empty.
+
+<Warning>
+  [Custom fields](/contacts/custom-fields) are **not** available as merge tags —
+  only the standard fields above.
+</Warning>
+
+## Campaign analytics
+
+Open a campaign to see its **Overview** and **Executions** tabs.
+
+**Summary cards:** Queued, Sent (% of recipients), Delivered (% of sent), Failed,
+Cancelled, and Total cost. Email campaigns also show opens, clicks, bounces,
+unsubscribes, and spam reports; SMS campaigns show link-click analytics.
+
+The **Executions** tab (for scheduled/recurring runs) shows per-run metrics and a
+**Messages** table with each recipient's From/To number, status, links opened, and
+sent time.
+
+Per-recipient message statuses: **Queued, Processing, Sent, Delivered,
+Undelivered, Failed, Cancelled, Rejected**.
+
+<Note>
+  Reply tracking lives in the [Inbox](/inbox/overview), not on the campaign
+  dashboard — the campaign view focuses on delivery and cost.
+</Note>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I send to more than one segment?">
+    Not yet — one segment per campaign. Build a dynamic segment whose rules capture
+    everyone you want to reach.
+  </Accordion>
+  <Accordion title="Can I duplicate or re-run a campaign?">
+    Duplicate/repeat isn't available as a one-click action today. Recurring campaigns
+    (SMS) cover repeated sending on a schedule.
+  </Accordion>
+  <Accordion title="How is cost estimated?">
+    SMS cost is estimated per segment (a 160-character message is one segment). The
+    summary panel shows the estimate before you send.
+  </Accordion>
+  <Accordion title="Why don't I see a reply rate?">
+    Replies are handled in the unified [Inbox](/inbox/overview). The campaign
+    dashboard reports delivery, cost, and (for email) engagement.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Select at least one phone number' / no numbers available">
+    You need an **Active**, SMS-capable number. Add or activate one in
+    [Settings → Channels](/channels/sms).
+  </Accordion>
+  <Accordion title="Recipients count is 0">
+    The chosen segment is empty. Pick a different segment or add contacts to it.
+  </Accordion>
+  <Accordion title="SMS not delivered to US numbers">
+    Confirm your [10DLC campaign](/compliance/a2p-10dlc) is approved and the sending
+    number is attached to the registered messaging service.
+  </Accordion>
+</AccordionGroup>
+
+<CardGroup cols={2}>
+  <Card title="Reusable templates" icon="file-lines" href="/campaigns/templates">
+    Save messages you send often.
+  </Card>
+  <Card title="Target a segment" icon="filter" href="/contacts/segments">
+    Build the right audience.
+  </Card>
+</CardGroup>

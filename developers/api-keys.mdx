@@ -1,0 +1,95 @@
+---
+title: "API keys"
+description: "Create and manage API keys to access the EzyText API programmatically."
+icon: "key"
+---
+
+## Overview
+
+API keys let external systems and integrations act on your workspace through the
+EzyText API. Manage them at **Settings → API keys** (`/settings/api-keys`).
+
+<Info>
+  **Difficulty:** Advanced &nbsp;·&nbsp; **Permission:** Manage API keys (human
+  users only).
+</Info>
+
+<Warning>
+  An API key acts with **Owner-level** permissions for your workspace — anyone with
+  the key can do anything an owner can. Store it securely and never commit it to
+  source control.
+</Warning>
+
+## Create an API key
+
+<Steps>
+  <Step title="Create key">
+    Go to **Settings → API keys** and click **Create API key**.
+  </Step>
+  <Step title="Name it">
+    Give it a **Name** (e.g. "Zapier integration"), an optional description, and an
+    optional **expiration** (leave blank for a key that never expires).
+  </Step>
+  <Step title="Copy the secret now">
+    The full key (starting with `et_live_`) is shown **once**. Copy and store it
+    immediately — you can't see it again.
+  </Step>
+</Steps>
+
+## Authenticate
+
+Send the key on each request using either header:
+
+```http
+X-API-Key: et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+or
+
+```http
+Authorization: Bearer et_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+## Rotate, revoke, delete
+
+- **Rotate** — generates a new secret (shown once) and immediately invalidates the
+  old one. Use this if a key may be exposed.
+- **Revoke** — stops the key working immediately, keeping its history.
+- **Delete** — removes it from the list.
+
+Keys show a status of **active**, **revoked**, or **expired**, plus when they were
+last used.
+
+<Note>
+  API keys can't manage other API keys or webhooks — those actions require a
+  signed-in user.
+</Note>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I scope a key to specific permissions?">
+    Not today — every key has Owner-level access. Treat keys as highly sensitive and
+    rotate them regularly.
+  </Accordion>
+  <Accordion title="I lost my key — can I see it again?">
+    No. The secret is shown only once. Rotate the key to get a new secret.
+  </Accordion>
+  <Accordion title="How do I use the API?">
+    See the [API reference](/api/introduction) for authentication, conventions, and
+    available endpoints.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Requests return 401 Unauthorized">
+    Confirm the key is active (not revoked or expired) and sent in the `X-API-Key` or
+    `Authorization: Bearer` header exactly as issued.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Set up webhooks" icon="webhook" href="/developers/webhooks">
+  Receive real-time events.
+</Card>

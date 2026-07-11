@@ -1,0 +1,59 @@
+---
+title: "Campaign analytics"
+description: "Track delivery, cost, and engagement for each campaign."
+icon: "chart-line"
+---
+
+## Overview
+
+Every [campaign](/campaigns/overview) has its own analytics on its detail page,
+with **Overview** and **Executions** tabs.
+
+<Info>
+  **Difficulty:** Beginner
+</Info>
+
+## Summary metrics
+
+The Overview tab shows:
+
+- **Queued**, **Sent** (% of recipients), **Delivered** (% of sent), **Failed**,
+  **Cancelled**, and **Total cost**.
+- For **email** campaigns: opens, clicks, bounces, unsubscribes, and spam reports.
+- For **SMS** campaigns: link-click analytics.
+
+## Executions and messages
+
+For scheduled and recurring campaigns, the **Executions** tab shows per-run metrics
+and a **Messages** table with each recipient's From/To numbers, status, links
+opened, and sent time.
+
+Per-recipient statuses: **Queued, Processing, Sent, Delivered, Undelivered, Failed,
+Cancelled, Rejected**.
+
+<Note>
+  Replies are tracked in the [Inbox](/inbox/overview), not on the campaign
+  dashboard — campaign analytics focus on delivery, cost, and (for email)
+  engagement.
+</Note>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Why isn't there a reply rate on the campaign?">
+    Reply handling lives in the unified [Inbox](/inbox/overview). The campaign view
+    reports delivery, cost, and engagement.
+  </Accordion>
+  <Accordion title="How is cost calculated for SMS?">
+    Per message segment (a 160-character SMS is one segment). The total cost card sums
+    the campaign's segments.
+  </Accordion>
+  <Accordion title="Can I create a segment from campaign responders?">
+    Not directly from a campaign today. Use tags or the
+    [poll → segment](/campaigns/polls) flow to build follow-up audiences.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Dashboard" icon="gauge" href="/analytics/dashboard">
+  See the big picture.
+</Card>

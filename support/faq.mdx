@@ -1,0 +1,91 @@
+---
+title: "Frequently asked questions"
+description: "Quick answers to the most common questions about EzyText."
+icon: "circle-question"
+---
+
+## Getting started
+
+<AccordionGroup>
+  <Accordion title="How do I send my first message?">
+    Connect an SMS provider ([Twilio](/providers/twilio) or [Telnyx](/providers/telnyx)),
+    [import contacts](/contacts/import-csv), then create a [campaign](/campaigns/overview).
+    See the [Quickstart](/quickstart).
+  </Accordion>
+  <Accordion title="Do I need my own Twilio/Telnyx account?">
+    Yes — you connect your own provider account. EzyText sends through it.
+  </Accordion>
+  <Accordion title="How do I invite my team?">
+    From **Settings → Users → Invite member**. See [Invite your team](/getting-started/invite-team).
+  </Accordion>
+</AccordionGroup>
+
+## Compliance
+
+<AccordionGroup>
+  <Accordion title="Do I have to register 10DLC?">
+    For reliable delivery to US mobile numbers, yes. See [A2P 10DLC](/compliance/a2p-10dlc).
+  </Accordion>
+  <Accordion title="How are opt-outs handled?">
+    STOP and similar keywords opt a contact out automatically, and they're excluded
+    from future campaigns. See [Opt-out management](/compliance/opt-out).
+  </Accordion>
+  <Accordion title="Is the opt-in auto-reply written by AI?">
+    No — it's a static message you configure. AI replies are a separate
+    [AI agent](/automation/ai-agent) feature for the inbox.
+  </Accordion>
+</AccordionGroup>
+
+## Contacts & campaigns
+
+<AccordionGroup>
+  <Accordion title="Can I use custom fields as merge tags?">
+    No — merge tags are limited to standard contact fields. See
+    [Custom fields](/contacts/custom-fields).
+  </Accordion>
+  <Accordion title="Can a campaign target multiple segments?">
+    One segment per campaign today. Build a dynamic segment that captures everyone you
+    want. See [Segments](/contacts/segments).
+  </Accordion>
+  <Accordion title="Where do replies show up?">
+    In the unified [Inbox](/inbox/overview), linked to the contact.
+  </Accordion>
+  <Accordion title="Can I export contacts?">
+    Contact CSV export isn't available today; import and in-app segmentation are.
+  </Accordion>
+</AccordionGroup>
+
+## Email
+
+<AccordionGroup>
+  <Accordion title="Can I connect Gmail or Outlook to send email?">
+    No — EzyText sends from your **verified domain**. There's no mailbox or SMTP
+    connection. See [Email channel](/channels/email).
+  </Accordion>
+</AccordionGroup>
+
+## Automation & AI
+
+<AccordionGroup>
+  <Accordion title="Can the AI agent book meetings or update a CRM?">
+    Not today. Its abilities are knowledge-base search and human handover. See
+    [AI agent](/automation/ai-agent).
+  </Accordion>
+  <Accordion title="Is there a 'contact replied' workflow trigger?">
+    Use a **Wait → until something happens → Contact replies** step inside a
+    [workflow](/automation/workflow-builder).
+  </Accordion>
+</AccordionGroup>
+
+## Billing
+
+<AccordionGroup>
+  <Accordion title="Is billing a prepaid SMS wallet?">
+    It's a subscription with entitlements and add-ons; **AI credits** are the
+    wallet-like balance. See [Plans & billing](/billing/wallet-billing).
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Still stuck?" icon="life-ring" href="/support/troubleshooting">
+  See the troubleshooting guide.
+</Card>

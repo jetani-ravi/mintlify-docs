@@ -1,0 +1,112 @@
+---
+title: "Unified inbox"
+description: "Manage every conversation across channels in one place, with AI assist and team collaboration."
+icon: "inbox"
+---
+
+## Overview
+
+The inbox is where you have conversations with contacts. Every inbound reply lands
+here, linked to the contact, so you (and your team, and your
+[AI agent](/automation/ai-agent)) can respond from one place. Open it from
+**Inbox** in the sidebar (`/inbox`).
+
+<Info>
+  **Difficulty:** Beginner
+</Info>
+
+## Layout
+
+The inbox has three panels:
+
+- **Left** — the conversation list, with search, filters, sort, and a **Pinned**
+  section.
+- **Middle** — the conversation thread and message composer.
+- **Right** — the contact's details, tags, opt-out status, notes, and the **AI
+  assistant** control.
+
+Tabs above the list filter by **All**, **Unread**, **Read**, and **Archived**.
+
+## Work a conversation
+
+<Steps>
+  <Step title="Open a conversation">
+    Click a conversation. It's marked read automatically.
+  </Step>
+  <Step title="Reply">
+    Type in the composer and send (Enter to send, Shift+Enter for a new line). Insert
+    a [quick message](/campaigns/quick-messages) by typing `/`.
+  </Step>
+  <Step title="Add an internal note">
+    Switch to **note** mode to leave a private note for your team — not visible to the
+    contact. Notes support attachments.
+  </Step>
+  <Step title="Assign, pin, or archive">
+    Use the thread header to **assign** the conversation to a teammate, **pin** it, or
+    **archive** it when you're done.
+  </Step>
+</Steps>
+
+## Channels
+
+Conversations can span **SMS**, **WhatsApp**, and **email** (shown as channel tabs
+in the thread). SMS shows a character/segment counter. Sending is blocked when the
+contact is opted out, the conversation is archived, or there's no connected number.
+
+<Note>
+  The email composer is read-only for now — email sending from the inbox is coming
+  in a later release.
+</Note>
+
+## Schedule a message
+
+Use the send button's dropdown to **schedule** a message for later. Scheduled
+messages appear in a panel where you can reschedule, send now, or cancel them.
+
+## AI assistant
+
+In the contact panel, the **AI assistant** card lets you **assign** an
+[AI agent](/automation/ai-agent) to handle the conversation, **take over** to reply
+yourself, or **resume AI**. AI-authored replies are labeled with the agent's name.
+
+## Real-time
+
+The inbox updates live — new messages, status changes, assignments, and notes
+appear instantly for your whole team without refreshing.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="How do I 'close' a conversation?">
+    Use **Archive** — it moves the conversation to the Archived tab and stops replies.
+    Reopen it anytime.
+  </Accordion>
+  <Accordion title="Can I filter to just my conversations?">
+    Yes — open **Filters** and set **Assigned to → Me**. You can also filter by
+    channel, tags, and date.
+  </Accordion>
+  <Accordion title="Why can't I send an email reply?">
+    Email replies from the inbox aren't enabled yet. Email campaigns still send
+    normally.
+  </Accordion>
+  <Accordion title="Do quick messages support variables?">
+    No — quick messages are plain text. See [Quick messages](/campaigns/quick-messages).
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="I can't send a reply">
+    Check that the contact isn't opted out, the conversation isn't archived, and you
+    have a connected number for the channel.
+  </Accordion>
+  <Accordion title="The AI stopped replying">
+    Sending a manual reply pauses the AI (Human controlled). Use **Resume AI** to hand
+    it back. See [AI agent](/automation/ai-agent).
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Add AI to your inbox" icon="robot" href="/automation/ai-agent">
+  Let an agent handle replies.
+</Card>

@@ -1,34 +1,226 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "EzyText",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#4F46E5",
+    "light": "#818CF8",
+    "dark": "#4338CA"
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "pages": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
+        "tab": "Getting Started",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "Set up your workspace",
+            "pages": [
+              "getting-started/create-workspace",
+              "getting-started/invite-team",
+              "getting-started/users-roles",
+              "getting-started/authentication"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Channels",
+        "groups": [
+          {
+            "group": "Channels",
+            "pages": [
+              "channels/overview",
+              "channels/sms",
+              "channels/email",
+              "channels/advertising"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Providers",
+        "groups": [
+          {
+            "group": "SMS",
+            "pages": ["providers/twilio", "providers/telnyx"]
+          },
+          {
+            "group": "Email",
+            "pages": [
+              "providers/email-domains",
+              "providers/email-senders"
+            ]
+          },
+          {
+            "group": "Advertising",
+            "pages": ["providers/google-ads", "providers/meta-ads"]
+          }
+        ]
+      },
+      {
+        "tab": "Compliance",
+        "groups": [
+          {
+            "group": "Compliance",
+            "pages": [
+              "compliance/a2p-10dlc",
+              "compliance/toll-free",
+              "compliance/opt-in",
+              "compliance/opt-out"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Contacts",
+        "groups": [
+          {
+            "group": "Contacts",
+            "pages": [
+              "contacts/overview",
+              "contacts/import-csv",
+              "contacts/custom-fields",
+              "contacts/tags",
+              "contacts/segments"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Campaigns",
+        "groups": [
+          {
+            "group": "Campaigns",
+            "pages": [
+              "campaigns/overview",
+              "campaigns/templates",
+              "campaigns/quick-messages"
+            ]
+          },
+          {
+            "group": "Engagement",
+            "pages": [
+              "campaigns/polls",
+              "campaigns/text-links",
+              "campaigns/join-links"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Automation & AI",
+        "groups": [
+          {
+            "group": "Automation",
+            "pages": [
+              "automation/workflow-builder",
+              "automation/module-builder"
+            ]
+          },
+          {
+            "group": "AI",
+            "pages": ["automation/ai-agent", "automation/knowledge-base"]
+          }
+        ]
+      },
+      {
+        "tab": "Inbox",
+        "groups": [
+          {
+            "group": "Inbox",
+            "pages": ["inbox/overview", "inbox/tickets"]
+          }
+        ]
+      },
+      {
+        "tab": "Scheduling",
+        "groups": [
+          {
+            "group": "Scheduling",
+            "pages": [
+              "scheduling/calendar",
+              "scheduling/meeting-types",
+              "scheduling/availability",
+              "scheduling/bookings",
+              "scheduling/calendar-integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Analytics & Billing",
+        "groups": [
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics/dashboard",
+              "analytics/campaign-analytics",
+              "analytics/ad-attribution",
+              "analytics/notifications"
+            ]
+          },
+          {
+            "group": "Billing",
+            "pages": ["billing/wallet-billing"]
+          }
+        ]
+      },
+      {
+        "tab": "Developers",
+        "groups": [
+          {
+            "group": "Developers",
+            "pages": ["developers/api-keys", "developers/webhooks"]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "api/introduction",
+              "api/authentication",
+              "api/conventions"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": ["api/resources"]
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Support",
+            "pages": [
+              "support/faq",
+              "support/troubleshooting",
+              "support/release-notes"
+            ]
+          }
         ]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Support",
+          "href": "mailto:support@ezytext.ai",
+          "icon": "life-ring"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Status",
+          "href": "https://status.ezytext.ai",
+          "icon": "signal"
         }
       ]
     }
@@ -41,32 +233,23 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@ezytext.ai"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Open App",
+      "href": "https://app.ezytext.ai"
     }
   },
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
+    "options": ["copy", "view", "chatgpt", "claude"]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/ezytext",
+      "github": "https://github.com/jetani-ravi/mintlify-docs",
+      "linkedin": "https://linkedin.com/company/ezytext"
     }
   }
 }

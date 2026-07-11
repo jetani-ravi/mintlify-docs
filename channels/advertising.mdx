@@ -1,0 +1,76 @@
+---
+title: "Advertising channel"
+description: "Connect Google Ads and Meta Ads to capture leads as contacts and measure results."
+icon: "bullhorn"
+---
+
+## Overview
+
+The advertising channel connects your ad accounts so new **lead-form leads** flow
+straight into EzyText as contacts — ready to text — and so you can see which
+campaigns turn into customers. EzyText supports **Google Ads** and **Meta Ads**
+(Facebook/Instagram). Find it under **Advertising** in the sidebar.
+
+<CardGroup cols={2}>
+  <Card title="Connect Google Ads" icon="google" href="/providers/google-ads">
+    Leads from Google search and YouTube ads.
+  </Card>
+  <Card title="Connect Meta Ads" icon="meta" href="/providers/meta-ads">
+    Leads from Facebook and Instagram ads.
+  </Card>
+</CardGroup>
+
+## What you get
+
+- **Automatic lead capture** — every new lead-ad submission becomes a contact
+  (source **Google Ads** or **Meta Ads**), matched by phone if they already exist.
+- **Attribution** — each contact records the platform, campaign, and lead form they
+  came from. See [Ad attribution](/analytics/ad-attribution).
+- **Performance** — the **Campaign Performance** page shows how ad spend turns into
+  contacts, appointments, and customers.
+
+## Pages
+
+| Page | What it shows |
+| --- | --- |
+| **Google Ads / Meta Ads** | Connect and manage each platform, with per-account KPIs. |
+| **Connected Accounts** | All connected ad accounts and their status. |
+| **Campaign Performance** | KPIs, a lead-to-customer funnel, and a campaign table. |
+| **Lead Sources** | Where all your contacts come from, across every source. |
+
+## Get started
+
+<Steps>
+  <Step title="Connect an account">
+    Follow [Connect Google Ads](/providers/google-ads) or
+    [Connect Meta Ads](/providers/meta-ads).
+  </Step>
+  <Step title="Pick the ad account">
+    Choose which ad account should send you leads.
+  </Step>
+  <Step title="Automate follow-up">
+    Build a welcome [workflow](/automation/workflow-builder) triggered by
+    **New advertising lead** so every lead gets an instant text.
+  </Step>
+</Steps>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Which platforms are supported?">
+    Google Ads and Meta Ads (Facebook and Instagram). LinkedIn and TikTok aren't
+    available.
+  </Accordion>
+  <Accordion title="How do leads become contacts?">
+    Lead-form submissions arrive via each platform's lead webhook and are created as
+    contacts automatically, with the ad source recorded.
+  </Accordion>
+  <Accordion title="Do I need a developer token or API key?">
+    No — you connect by signing in with Google or Facebook (OAuth). EzyText handles
+    the technical credentials behind the scenes.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="See attribution" icon="arrows-to-dot" href="/analytics/ad-attribution">
+  Trace contacts back to their ad source.
+</Card>

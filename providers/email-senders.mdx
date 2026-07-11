@@ -1,0 +1,83 @@
+---
+title: "Senders"
+description: "Add the from-name and from-address your email campaigns send from."
+icon: "user"
+---
+
+## Overview
+
+A **sender** is the from-name and email address your [email campaigns](/campaigns/overview)
+send from — for example, "Acme Marketing <hello@acme.com>". Senders live on a
+[verified domain](/providers/email-domains). Manage them at **Settings → Email →
+Senders** (`/settings/email/senders`).
+
+<Info>
+  **Difficulty:** Beginner &nbsp;·&nbsp; Requires a verified domain first.
+</Info>
+
+## Add a sender
+
+<Steps>
+  <Step title="Open Senders">
+    Go to **Settings → Senders** and click **Add sender**.
+  </Step>
+  <Step title="Choose a domain and address">
+    Pick a **verified domain**, enter a **From name** (e.g. "Acme Marketing") and an
+    **Email address** that ends with `@yourdomain.com`.
+  </Step>
+  <Step title="Optional settings">
+    Add an optional **Reply-to** address and toggle **Set as default sender**.
+  </Step>
+  <Step title="Save">
+    The sender is ready to use in email campaigns.
+  </Step>
+</Steps>
+
+<Note>
+  You can only create a sender on a domain that's already **Verified**. If the
+  dropdown is empty, [verify a domain](/providers/email-domains) first.
+</Note>
+
+## Sender status
+
+- **Verified** — its domain is verified; ready to send.
+- **Unverified** — appears only if the domain later loses verification.
+
+You can set one sender as the **default**, used when a campaign doesn't specify one.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I edit a sender's email address?">
+    The from-address and domain are fixed once created — you can edit the name,
+    reply-to, and default flag. Create a new sender to change the address.
+  </Accordion>
+  <Accordion title="Why must the address match my domain?">
+    Sending from an address on your verified domain is what keeps your email
+    authenticated and deliverable.
+  </Accordion>
+  <Accordion title="Can I have multiple senders?">
+    Yes — add as many as you need across your verified domains, and pick one per
+    campaign.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Verify a sending domain first'">
+    You have no verified domains. Add and verify one under
+    [Sending domains](/providers/email-domains).
+  </Accordion>
+  <Accordion title="'Email must end with @yourdomain'">
+    The address must belong to the selected verified domain. Use an address on that
+    domain.
+  </Accordion>
+  <Accordion title="A campaign says my sender isn't verified">
+    The sender's domain lost verification. Re-verify the domain, then retry.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Send an email campaign" icon="paper-plane" href="/campaigns/overview">
+  Use your sender in a campaign.
+</Card>

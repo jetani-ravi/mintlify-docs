@@ -1,0 +1,135 @@
+---
+title: "Polls"
+description: "Ask your audience a question over SMS and auto-segment them by their answers."
+icon: "square-poll-vertical"
+---
+
+## Overview
+
+A poll sends an SMS question with numbered options. Contacts reply with a number
+(or the option's text) to vote, and you can turn the responders to any option into
+a [segment](/contacts/segments) for follow-up. Find polls under **Polls** in the
+sidebar (`/polls`).
+
+<Info>
+  **Difficulty:** Beginner &nbsp;·&nbsp; Votes are accepted while a poll is **Active**.
+</Info>
+
+## Create a poll
+
+<Steps>
+  <Step title="Sender" icon="hashtag">
+    Select one or more phone numbers to send from.
+  </Step>
+  <Step title="Message & options" icon="pen">
+    Write the **Poll Question** (merge tags supported, e.g. `{{first_name}}`).
+    EzyText appends the numbered option list automatically. Add **2–10 options**
+    (each up to 60 characters, drag to reorder). Optionally turn on **Allow multiple
+    options** so a contact can pick several.
+  </Step>
+  <Step title="Audience" icon="filter">
+    Choose the **segment** to poll.
+  </Step>
+  <Step title="Schedule" icon="clock">
+    **Send Now** or **Schedule for Later** (with timezone). Optionally set
+    **Auto-close** — the poll closes automatically at the chosen time (default: 7
+    days after launch).
+  </Step>
+</Steps>
+
+Click **Launch Poll**.
+
+## How contacts vote
+
+Contacts simply **reply to the poll SMS**:
+
+- With a **number** — `2` votes for the second option.
+- With the **option text** — replying "blue" matches the option labeled "Blue".
+
+Matching is case-insensitive. For multiple-choice polls, replies like `1, 3` or
+"yes and maybe" record several votes; each option in a separate reply also works.
+For single-choice polls, only the first matched option counts and a second vote is
+rejected.
+
+<Note>
+  Only **known contacts** can vote, and votes are matched to the most recent poll
+  they received (within a 14-day window) while it's **Active**.
+</Note>
+
+## Act on the answers (auto-segment)
+
+The built-in way to act on responses is to create a segment from the voters of an
+option:
+
+<Steps>
+  <Step title="Open the poll's Votes tab">
+    On the poll detail page, go to **Votes**.
+  </Step>
+  <Step title="Create a segment from an option">
+    Click **Create Segment from "&lt;option&gt;"** next to any option with votes.
+    EzyText builds a **static segment** of everyone who chose that option, named
+    after the poll and option, and takes you to it.
+  </Step>
+</Steps>
+
+You can then target that segment with a follow-up [campaign](/campaigns/overview).
+
+<Note>
+  Tagging contacts automatically per answer is supported in the platform's data
+  model but isn't configurable from the current poll builder — use the
+  **create-segment-from-option** flow above to act on answers today.
+</Note>
+
+## Poll statuses
+
+**Scheduled** → **Broadcasting** → **Active** → **Closed** / **Expired**, plus
+**Cancelled**. Votes are only counted while a poll is **Active**. You can **Close**
+a poll early (no more votes), **Cancel** before/while sending, or **Delete** a
+finished poll.
+
+## Analytics
+
+The poll's **Overview** and **Analytics** show:
+
+- **Total votes** and **unique voters**.
+- **Vote distribution** — a chart with each option's share.
+- **Response rate** and **response rate over time**.
+- A per-option breakdown, and a **Votes** table (voter, option, time) you can filter
+  by option.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="How do people vote?">
+    They reply to the poll text with the option number or the option text. No app or
+    link needed.
+  </Accordion>
+  <Accordion title="Can someone change their vote?">
+    On single-choice polls, a second vote is rejected. On multiple-choice polls,
+    additional distinct options are added; the same option twice counts once.
+  </Accordion>
+  <Accordion title="Can I export poll results?">
+    A CSV export isn't available today. Use the analytics views and create segments
+    from responders.
+  </Accordion>
+  <Accordion title="When do votes stop counting?">
+    When the poll is Closed, Expired (auto-close), or Cancelled — or if a reply
+    arrives more than 14 days after the poll was sent.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="A reply didn't register as a vote">
+    The sender must be a known contact, the poll must still be **Active**, and the
+    reply must start with a valid option number or match an option's text.
+  </Accordion>
+  <Accordion title="Votes stopped coming in">
+    Check the poll status — it may have auto-closed (Expired) or been Closed.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Build a segment" icon="filter" href="/contacts/segments">
+  Follow up with responders.
+</Card>

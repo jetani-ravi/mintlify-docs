@@ -1,0 +1,141 @@
+---
+title: "Join links (text & web form)"
+description: "Grow your contact list with text-to-join keywords and hosted web forms, with consent and QR codes."
+icon: "link-simple"
+---
+
+## Overview
+
+Join links let people opt in to your messages. There are two kinds, both created on
+the **Links** page (`/links`):
+
+- **Text link** — people text a keyword (your message) to your number to join.
+- **Web form** — a hosted public form people fill in to join.
+
+Both can attach a [segment](/contacts/segments) and [tags](/contacts/tags), collect
+consent, and trigger a welcome message. Each gets a shareable URL and a QR code.
+
+<Info>
+  **Difficulty:** Beginner (text link) / Intermediate (web form)
+</Info>
+
+## Text link (text-to-join)
+
+<Steps>
+  <Step title="Create a text link">
+    On the **Links → Text Link** tab, click **Create Text Link**.
+  </Step>
+  <Step title="Setup">
+    Set the **Link Name** and **Custom Slug** (auto-suggested), pick the **Sender
+    Phone Number**, and choose an **SMS Template** (a text-link template — the
+    template body is the "keyword" people send). You can create a template inline.
+  </Step>
+  <Step title="Audience">
+    Optionally attach a **Segment** and **Tags**, and set an **Auto-Reply** (sent
+    immediately) and a **Welcome Message** (sent after).
+  </Step>
+  <Step title="Preview & save">
+    Review the SMS preview and save.
+  </Step>
+</Steps>
+
+The public page (`/join/<slug>`) opens the visitor's Messages app pre-filled with
+your number and the keyword text, plus a QR that does the same. When they send it,
+EzyText creates the contact (source **Text Link**), applies your segment and tags,
+records the reply as consent, and sends your welcome message.
+
+## Web form
+
+<Steps>
+  <Step title="Create a web form">
+    On the **Links → Web Form** tab, click **Create Web Form**.
+  </Step>
+  <Step title="Basic info">
+    Set the **Link Name**, **Custom Slug**, description, and active status.
+  </Step>
+  <Step title="Form builder">
+    **First Name** and **Phone** are always required. Add **optional fields** (last
+    name, email, address parts). Toggle **Require consent checkbox** and set its
+    label (default "I agree to receive SMS messages"). Optionally turn on **OTP
+    verification** to confirm the phone number.
+  </Step>
+  <Step title="Post-submit">
+    Attach **Tags**, set a **Thank You Message** or a **Redirect URL** (a redirect
+    overrides the thank-you), add a **Welcome Message**, and pick **brand colors**.
+  </Step>
+  <Step title="Preview & save">
+    Review the live form preview and save.
+  </Step>
+</Steps>
+
+When someone submits, EzyText validates consent (and OTP if enabled), creates or
+updates the contact (source **Web Form**), adds them to your segment, applies tags,
+records a **consent snapshot** (the exact consent text, a hashed IP, user agent, and
+timestamp), and sends the welcome message. They then see your thank-you screen or
+are redirected.
+
+## QR codes
+
+Every join link can generate a **QR code** (from the list row or the detail **QR
+Code** tab). Download it as a PNG and track **Total Scans** and **Unique Scans**.
+For text links the QR opens Messages pre-filled; for web forms it opens the form.
+
+## Opt-out protection
+
+EzyText won't re-onboard an opted-out contact through a join link. If someone who
+previously opted out tries to submit (or request an OTP), the request is refused —
+protecting you under TCPA/GDPR. See [Opt-out management](/compliance/opt-out).
+
+## Analytics
+
+Each join link's detail page shows submissions over time, a submissions table
+(contact name, phone, email), views, and QR scan stats. The list page summarizes
+Total Links, Total Submissions, and Active Links.
+
+## Statuses
+
+Join links are **Active**, **Inactive**, or **Archived**. Deactivating rejects new
+submissions until you reactivate; archiving (delete) makes the public URL return a
+404 but keeps existing submissions and contacts.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What's the 'keyword' for a text link?">
+    It's the SMS template body people send. EzyText matches the inbound message
+    against it (exact or contains), so extra typed text still counts.
+  </Accordion>
+  <Accordion title="Do web forms verify phone numbers?">
+    Optionally — turn on **OTP verification** in the form builder to require a
+    6-digit code before submission.
+  </Accordion>
+  <Accordion title="Is consent recorded?">
+    Yes. When consent is required, EzyText stores the exact consent wording shown,
+    plus a hashed IP, user agent, and timestamp, per submission.
+  </Accordion>
+  <Accordion title="Can I redirect after submit?">
+    Yes — set a **Redirect URL** in the web-form post-submit step. It overrides the
+    thank-you message.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Someone can't submit the form">
+    Check the link is **Active**, they passed the **consent** checkbox (if required),
+    and OTP (if enabled). Opted-out contacts are intentionally blocked.
+  </Accordion>
+  <Accordion title="'You're already on the list!'">
+    That contact already submitted this link — duplicates per link are prevented and
+    show the already-joined screen.
+  </Accordion>
+  <Accordion title="No welcome message arrived">
+    Welcome sends are best-effort and skip opted-out contacts. Confirm the contact
+    isn't opted out and that your SMS channel is connected.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Manage consent" icon="ban" href="/compliance/opt-out">
+  Opt-out and opt-in behavior.
+</Card>

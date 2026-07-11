@@ -1,0 +1,112 @@
+---
+title: "Webhooks"
+description: "Receive real-time events at your own endpoints, with signed, retried deliveries."
+icon: "webhook"
+---
+
+## Overview
+
+Webhooks push events from EzyText to your own URL in real time — for example, when a
+contact is created or a campaign completes. Manage them at **Settings → Webhooks**
+(`/settings/webhooks`).
+
+<Info>
+  **Difficulty:** Advanced &nbsp;·&nbsp; **Permission:** Manage webhooks.
+</Info>
+
+## Create a webhook
+
+<Steps>
+  <Step title="Add an endpoint">
+    Go to **Settings → Webhooks → New** and enter your **Endpoint URL** (HTTPS), a
+    **Label**, and an optional description.
+  </Step>
+  <Step title="Subscribe to events">
+    Pick the events you want to receive (see below). You can also add custom headers.
+  </Step>
+  <Step title="Enable signing">
+    Keep **Sign payloads** on. On save, your **signing secret** is shown once — copy
+    it to verify deliveries.
+  </Step>
+</Steps>
+
+## Events you can subscribe to
+
+<AccordionGroup>
+  <Accordion title="Contacts & segments">
+    `contact.created`, `contact.updated`, `contact.deleted`, `contact.tags_changed`,
+    `contact.opted_in`, `contact.opted_out`, `segment.created`, `segment.updated`,
+    `segment.deleted`
+  </Accordion>
+  <Accordion title="Campaigns & polls">
+    `campaign.created`, `campaign.updated`, `campaign.paused`, `campaign.resumed`,
+    `campaign.cancelled`, `poll.created`, `poll.closed`, `poll.expired`
+  </Accordion>
+  <Accordion title="Inbox & messaging">
+    `inbox.message.created`, `inbox.message.status_changed`,
+    `inbox.conversation.created`, `inbox.conversation.read`, `inbox.unified.assigned`,
+    `inbox.note.created`, `inbound.message.persisted`
+  </Accordion>
+  <Accordion title="Channels & links">
+    `sms_channel.connected`, `sms_channel.disconnected`, `sms_channel.provider_switched`,
+    `sms_channel.brand_registered`, `sms_channel.brand_deleted`,
+    `sms_channel.campaign_created`, `sms_channel.campaign_deleted`,
+    `sms_channel.phone_number_purchased`, `join-link.submitted`, `short-link.clicked`
+  </Accordion>
+</AccordionGroup>
+
+## Verify signatures
+
+Signed deliveries include these headers:
+
+```http
+X-EzyText-Signature: t=<unix>,v1=<hex-hmac-sha256>
+X-EzyText-Timestamp: <unix>
+X-EzyText-Event: <event.name>
+X-EzyText-Delivery: <delivery-id>
+```
+
+Compute an HMAC-SHA256 of `<timestamp>.<raw-body>` using your signing secret and
+compare it (in constant time) to `v1`. Reject stale timestamps.
+
+## Deliveries and retries
+
+- Failed deliveries retry up to **3 attempts** (after ~1 and ~5 minutes), then
+  dead-letter.
+- An endpoint that fails repeatedly is **auto-disabled** — re-enable it after fixing.
+- View the **delivery log** with status, payload, and response, and **retry** failed
+  deliveries manually.
+- Use **Send test** to fire a sample event and inspect it.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I use HTTP (not HTTPS)?">
+    Endpoints must be HTTPS. Private, loopback, and internal addresses are blocked for
+    security.
+  </Accordion>
+  <Accordion title="How do I rotate the signing secret?">
+    Use the endpoint's rotate-secret action; the new secret is shown once.
+  </Accordion>
+  <Accordion title="What if my endpoint is down?">
+    Deliveries retry a few times, then dead-letter. Persistent failures auto-disable
+    the endpoint until you re-enable it.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Signature verification fails">
+    Sign `<timestamp>.<raw-body>` (the exact raw bytes, before JSON parsing) with your
+    secret using HMAC-SHA256, and compare to the `v1` value in `X-EzyText-Signature`.
+  </Accordion>
+  <Accordion title="My endpoint was auto-disabled">
+    It hit repeated terminal failures. Fix the endpoint, then re-activate it — this
+    resets the failure streak.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="API reference" icon="code" href="/api/introduction">
+  Explore the full API.
+</Card>

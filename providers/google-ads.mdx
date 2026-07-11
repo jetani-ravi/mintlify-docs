@@ -1,0 +1,93 @@
+---
+title: "Connect Google Ads"
+description: "Authorize Google Ads so new lead-form leads flow into EzyText as contacts."
+icon: "google"
+---
+
+<Info>
+  **Time to complete:** ~5 minutes &nbsp;·&nbsp; **Difficulty:** Beginner
+  &nbsp;·&nbsp; **Permission:** Manage advertising
+</Info>
+
+## Overview
+
+Connecting Google Ads lets EzyText watch your account for new lead-form leads and
+add them to your contacts automatically. You connect by signing in with Google —
+there's no developer token or API key to enter.
+
+## Connect
+
+<Steps>
+  <Step title="Start the connection">
+    Go to **Advertising → Google Ads** and click **Connect Google Ads** (or start
+    from **Connected Accounts → Connect**).
+  </Step>
+  <Step title="Sign in with Google">
+    Click **Continue with Google**. You'll be sent to Google to sign in and grant
+    access to view your ad campaigns and leads. EzyText never changes your ads or
+    spends your budget.
+  </Step>
+  <Step title="Choose an ad account">
+    Back in EzyText, pick which **ad account** should send you leads.
+  </Step>
+  <Step title="Review campaigns and finish">
+    You'll see your campaigns (leads from all of them are captured). Click through
+    to **Done**.
+  </Step>
+</Steps>
+
+<Frame caption="Connecting Google Ads">
+  <img src="/images/providers/google-ads-connect.png" alt="Google Ads connect wizard" />
+</Frame>
+
+## After connecting
+
+- New lead-form leads appear in **Contacts** within about a minute, with source
+  **Google Ads**.
+- Build a welcome [workflow](/automation/workflow-builder) triggered by **New
+  advertising lead** to text each lead instantly.
+- Track results on **Campaign Performance** and [Ad attribution](/analytics/ad-attribution).
+
+## Account status
+
+- **Receiving leads** — connected and active.
+- **Needs attention** — the connection broke; click **Reconnect**.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Do I need a Google Ads developer token?">
+    No. You just sign in with Google. The technical credentials are managed by
+    EzyText.
+  </Accordion>
+  <Accordion title="Which campaigns' leads are captured?">
+    Leads from all lead forms on the connected ad account are captured — the campaign
+    list in the wizard is informational.
+  </Accordion>
+  <Accordion title="Can multiple teammates manage the connection?">
+    Yes — ad connections are shared across your workspace for anyone with advertising
+    permissions.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Permission wasn't granted'">
+    You declined a permission during Google sign-in. Try again and allow access.
+  </Accordion>
+  <Accordion title="'The connection link expired'">
+    Restart the connect flow from **Advertising → Google Ads**.
+  </Accordion>
+  <Accordion title="'No ad accounts found'">
+    The Google login has no ad accounts, or you signed in with the wrong Google
+    account. Reconnect with the account that owns your ads.
+  </Accordion>
+  <Accordion title="Account shows 'Needs attention'">
+    Access expired or was revoked. Click **Reconnect** to restore lead flow.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Connect Meta Ads" icon="meta" href="/providers/meta-ads">
+  Capture Facebook and Instagram leads too.
+</Card>

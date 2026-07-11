@@ -1,0 +1,119 @@
+---
+title: "Conventions"
+description: "The response envelope, pagination, rate limits, errors, and validation rules shared by every endpoint."
+icon: "list-check"
+---
+
+Every endpoint follows the same conventions, so you only learn them once.
+
+## Response envelope
+
+Every successful response is wrapped in a uniform envelope:
+
+```json
+{
+  "success": true,
+  "data": { },
+  "message": "optional human-readable message"
+}
+```
+
+List endpoints add a `meta` object with pagination:
+
+```json
+{
+  "success": true,
+  "data": [ ],
+  "meta": { "page": 1, "limit": 20, "total": 42, "totalPages": 3 }
+}
+```
+
+<Note>
+  A `204 No Content` response (for example, deleting a campaign) has no body.
+</Note>
+
+## Pagination
+
+List endpoints accept:
+
+<ParamField query="page" type="integer" default="1">
+  Page number, starting at 1.
+</ParamField>
+<ParamField query="limit" type="integer" default="20">
+  Items per page, between 1 and 100.
+</ParamField>
+
+The response `meta` returns `page`, `limit`, `total`, and `totalPages`. Some list
+endpoints add extra keys to `meta` (for example, the campaigns list adds status
+counts).
+
+A few high-volume reads use **cursor** pagination instead (a `cursor` plus `limit`)
+— noted on those endpoints.
+
+## Rate limits
+
+Limits apply at two levels:
+
+| Scope | Default | Notes |
+| --- | --- | --- |
+| Per IP | 60 requests / minute | Applies to all routes. |
+| Per workspace | 600 requests / minute | Shared across all your keys and sessions. |
+| Per workspace | 100,000 requests / day | Daily cap. |
+
+Workspace responses include headers so you can back off proactively:
+
+```http
+X-RateLimit-Limit-Minute / X-RateLimit-Remaining-Minute
+X-RateLimit-Limit-Day    / X-RateLimit-Remaining-Day
+```
+
+When you exceed a limit you receive `429 Too Many Requests` with a `Retry-After`
+header (seconds). Some expensive endpoints (like segment preview) have tighter
+per-route limits.
+
+## Errors
+
+Errors use a consistent shape:
+
+```json
+{
+  "success": false,
+  "error": {
+    "statusCode": 400,
+    "errorCode": 10000,
+    "code": "VALIDATION_ERROR",
+    "message": "Validation failed",
+    "details": null,
+    "traceId": "3f1c…",
+    "timestamp": "2026-07-11T12:00:00.000Z"
+  }
+}
+```
+
+| Field | Meaning |
+| --- | --- |
+| `statusCode` | HTTP status code |
+| `code` | Stable string error slug |
+| `message` | Human-readable summary |
+| `details` | Validation details when applicable, else `null` |
+| `traceId` | Correlate with support / your logs |
+
+Common statuses: **400** (validation, non-UUID id, or an unknown field), **401**
+(bad/expired credentials), **403** (missing permission, or an API key on a
+session-only route), **404** (not found), **429** (rate limited).
+
+## Validation
+
+- Request bodies are strict: **unknown fields are rejected** with a `400`.
+- All `:id` path parameters must be **UUIDs**.
+- Query parameters are typed — send numbers and booleans in the expected form.
+
+## Idempotency
+
+Where an operation must not double-fire (for example, sending an inbox message),
+you provide a `clientMessageId` (a UUID you generate). Reusing the same value is
+treated as the same request.
+
+<Card title="Browse the resources" icon="cubes" href="/api/resources">
+  Endpoints for contacts, segments, campaigns, and more.
+</Card>

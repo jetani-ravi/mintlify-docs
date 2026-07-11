@@ -1,0 +1,160 @@
+---
+title: "Connect Telnyx"
+description: "Connect your Telnyx account and messaging profile to send and receive SMS through EzyText."
+icon: "plug"
+---
+
+<Info>
+  **Time to complete:** ~10 minutes to connect &nbsp;·&nbsp; **Difficulty:** Beginner
+</Info>
+
+## Overview
+
+Telnyx is one of two SMS providers EzyText supports (the other is
+[Twilio](/providers/twilio)). Connecting Telnyx lets EzyText send text messages
+through your Telnyx numbers and messaging profiles, receive replies in your
+[Inbox](/inbox/overview), and handle [A2P 10DLC](/compliance/a2p-10dlc) registration.
+
+<Note>
+  In Telnyx, a **messaging profile** plays the same role that a *messaging service*
+  plays in Twilio. EzyText uses "Messaging Profile" terminology throughout the
+  Telnyx setup.
+</Note>
+
+<Note>
+  Only **one SMS provider can be active at a time** per workspace. If Twilio is
+  already connected, connecting Telnyx prompts you to switch — the previous
+  provider's numbers and profiles are removed on switch.
+</Note>
+
+## Before you start
+
+You need:
+
+- A [Telnyx account](https://telnyx.com) with a phone number, or funds to buy one.
+- A Telnyx **API Key** with **Messaging scope enabled** (Telnyx Portal → **API Keys**).
+- Optionally, a **Messaging Profile ID** (Telnyx Portal → **Messaging → Messaging
+  Profiles**) if you want to link an existing profile.
+- The **Manage channels** permission in EzyText (Owner or Admin).
+
+<Warning>
+  The API key must have the **Messaging** scope. A key without it connects to
+  Telnyx but can't send messages, and EzyText will reject it during validation.
+</Warning>
+
+## Connect Telnyx
+
+<Steps>
+  <Step title="Open the Telnyx channel">
+    Go to **Settings → Channels**. Under **SMS**, find the **Telnyx** card
+    ("Carrier-grade SMS messaging via Telnyx") and click **Configure**.
+  </Step>
+  <Step title="Enter your credentials">
+    On the **Connect** tab, fill in:
+
+    | Field | Required | Where to find it | Format |
+    | --- | --- | --- | --- |
+    | **API Key** | Yes | Telnyx Portal → API Keys (Messaging scope) | Starts with `KEY` |
+    | **Messaging Profile ID** | No | Telnyx Portal → Messaging → Messaging Profiles | A UUID |
+
+    EzyText validates format live — the API Key must start with `KEY`, and the
+    Messaging Profile ID (if provided) must be a valid UUID.
+  </Step>
+  <Step title="Connect & save">
+    Click **Connect & Save Credentials**. EzyText calls Telnyx to list your
+    messaging profiles as a live check before saving. On success you'll see
+    **"Channel connected successfully"** and the setup wizard opens.
+
+    <Frame caption="Telnyx Connect tab">
+      <img src="/images/providers/telnyx-connect.png" alt="Telnyx Connect tab" />
+    </Frame>
+  </Step>
+</Steps>
+
+## Finish setup (profile, numbers, 10DLC)
+
+After connecting, the **Set Up Your Channel** wizard runs in the recommended order:
+
+<Steps>
+  <Step title="10DLC Brand" icon="shield-check">
+    Register the business that will send messages — see [A2P 10DLC](/compliance/a2p-10dlc).
+  </Step>
+  <Step title="Messaging Profile" icon="gear">
+    Select one or more messaging profiles, or create a new one.
+  </Step>
+  <Step title="10DLC Campaign" icon="file-lines">
+    Register a campaign linked to your profile, or skip to numbers (recommended,
+    not required to finish).
+  </Step>
+  <Step title="Numbers" icon="hashtag">
+    Assign numbers to your profile, or **Buy New Number**.
+  </Step>
+</Steps>
+
+Click **Finish Setup** to save.
+
+### Buy a phone number
+
+From the **Numbers** step, click **Buy New Number**, choose a **Country**,
+optionally filter by **Area Code** or a **Contains** pattern, select
+**Capabilities** (SMS / MMS / Voice), then **Search Numbers** → **Buy** and confirm.
+
+## Webhooks
+
+Webhooks are configured automatically. EzyText sets your messaging profile's
+webhook URL to `https://<your-app-domain>/webhooks/sms/telnyx` (with a failover
+URL for delivery events). Inbound webhooks are verified with Telnyx's Ed25519
+signature (`telnyx-signature-ed25519` + `telnyx-timestamp`).
+
+## Channel status
+
+The header shows **Active**, **Disconnected**, or **Error**. After connecting, the
+Connect tab shows only a masked API Key. Use **Disconnect** to remove the channel
+(this makes numbers unusable and pauses campaigns using it).
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Do I need a Messaging Profile ID to connect?">
+    No — it's optional. If you leave it blank, EzyText discovers your messaging
+    profiles from the API key and lets you pick one during setup.
+  </Accordion>
+  <Accordion title="What scope does my API key need?">
+    The **Messaging** scope. Enable it when creating the key in the Telnyx Portal.
+    A key without Messaging scope is rejected during validation.
+  </Accordion>
+  <Accordion title="What's the difference between a profile and a service?">
+    They're the same concept across providers. Telnyx calls it a **messaging
+    profile**; Twilio calls it a **messaging service**. EzyText assigns numbers to
+    a profile so it knows which sender and webhooks to use.
+  </Accordion>
+  <Accordion title="Can I run Telnyx and Twilio together?">
+    No. Only one SMS provider is active per workspace at a time.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Invalid API key'">
+    Telnyx rejected the key. Re-copy it from the Telnyx Portal → API Keys, and make
+    sure you're using a full key that starts with `KEY`.
+  </Accordion>
+  <Accordion title="'API key is missing required permissions'">
+    Full message: *"Ensure the key has Messaging scope enabled in the Telnyx
+    dashboard."* Edit or recreate the key with the **Messaging** scope, then
+    reconnect.
+  </Accordion>
+  <Accordion title="'Must be a valid Telnyx API key (starts with KEY)'">
+    The API Key field must start with `KEY`. You may have pasted a different token
+    — copy the API key value, not the key ID or a public key.
+  </Accordion>
+  <Accordion title="Numbers don't receive replies">
+    Finish setup so EzyText can write the webhook URL to your messaging profile, and
+    confirm the number is attached to that profile.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Next: register for 10DLC" icon="shield-check" href="/compliance/a2p-10dlc">
+  Required for reliable US SMS delivery.
+</Card>

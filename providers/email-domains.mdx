@@ -1,0 +1,89 @@
+---
+title: "Sending domains"
+description: "Verify a domain with DNS records so your email is authenticated and deliverable."
+icon: "globe"
+---
+
+<Info>
+  **Time to complete:** ~10 minutes plus DNS propagation &nbsp;·&nbsp;
+  **Difficulty:** Intermediate
+</Info>
+
+## Overview
+
+To send email from your own address, you verify the domain it belongs to by adding
+a few DNS records. This authenticates your mail (SPF and DKIM) and sets up link
+tracking, so your campaigns are trusted and land in inboxes. Manage domains at
+**Settings → Email → Sending domains** (`/settings/email/domains`).
+
+## Verify a domain
+
+<Steps>
+  <Step title="Add your domain">
+    Go to **Settings → Sending domains** and click **Add domain**. Enter a bare
+    domain like `acme.com` (no `https://`, no path).
+  </Step>
+  <Step title="Copy the DNS records">
+    EzyText shows a set of **CNAME** records covering **SPF**, **DKIM**, and a
+    **tracking domain**. Copy each record's host and value.
+  </Step>
+  <Step title="Add them at your DNS provider">
+    Open your DNS provider (GoDaddy, Cloudflare, Namecheap, etc.) and add the records
+    exactly as shown.
+  </Step>
+  <Step title="Verify">
+    Back in EzyText, click **Verify**. EzyText re-checks your DNS and updates the
+    status. It also re-checks automatically every few minutes.
+  </Step>
+</Steps>
+
+<Frame caption="DNS records for domain authentication">
+  <img src="/images/providers/email-dns.png" alt="Email domain DNS records" />
+</Frame>
+
+## Verification status
+
+- **Pending** — waiting for DNS to propagate (can take minutes up to 48 hours).
+- **Verified** — authenticated and ready to send from.
+- **Failed** — DNS wasn't detected within 48 hours; fix the records and re-verify.
+
+<Note>
+  DNS changes can take time to propagate. EzyText re-checks pending domains
+  automatically — you don't have to keep clicking **Verify**.
+</Note>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What records do I add?">
+    CNAME records for SPF, DKIM, and a tracking subdomain — EzyText generates them
+    for your domain. A DMARC record isn't part of this flow.
+  </Accordion>
+  <Accordion title="Do I need to own the domain?">
+    Yes — you must be able to add DNS records for it. You can't verify a domain you
+    don't control (like `gmail.com`).
+  </Accordion>
+  <Accordion title="How long does verification take?">
+    Often a few minutes, but DNS can take up to 48 hours to propagate globally.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="'Enter a bare domain like acme.com'">
+    Remove the scheme and path — enter just `acme.com`, not `https://acme.com/`.
+  </Accordion>
+  <Accordion title="Domain stuck on 'Pending'">
+    Double-check each CNAME host and value matches exactly (watch for your provider
+    auto-appending the domain). Propagation can take up to 48 hours.
+  </Accordion>
+  <Accordion title="'This domain is already registered'">
+    The domain is already added to your workspace. Open it from the list instead of
+    adding it again.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Next: add a sender" icon="user" href="/providers/email-senders">
+  Create a from-address on your verified domain.
+</Card>

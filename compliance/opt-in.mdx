@@ -1,0 +1,135 @@
+---
+title: "Opt-in & auto-reply"
+description: "Let previously opted-out contacts re-subscribe, and send an automatic confirmation."
+icon: "circle-check"
+---
+
+## Overview
+
+Opt-in is how a contact who previously opted out can **re-subscribe** to your
+messages. When someone replies with an opt-in keyword like **START**, EzyText
+clears their opt-out flag, records the consent on their timeline, and can send an
+optional welcome-back confirmation.
+
+You configure opt-in keywords and the auto-reply at **Settings → Opt-out**, in the
+right-hand **Opt-In Settings** column (next to [Opt-out](/compliance/opt-out)).
+
+<Info>
+  **Difficulty:** Beginner &nbsp;·&nbsp; **Permission:** viewing needs Settings
+  read; changes need Settings update (Owner/Admin).
+</Info>
+
+## How opt-in works
+
+<Steps>
+  <Step title="A contact replies with an opt-in keyword">
+    EzyText checks inbound messages for opt-in keywords. Detection is the same as
+    opt-out: case-insensitive, start-anchored, whole-word (`STARTUP` won't match
+    `START`).
+  </Step>
+  <Step title="The contact is re-subscribed">
+    If the contact was previously opted out, EzyText clears the flag, records an
+    **Opted in** event on their timeline, and they become eligible for campaigns
+    again. If they were never opted out, nothing changes.
+  </Step>
+  <Step title="An optional confirmation is sent">
+    If you've set an opt-in auto-reply, EzyText sends it (subject to the
+    provider-reserved keyword rules below).
+  </Step>
+</Steps>
+
+### Default keywords
+
+Every workspace starts with the carrier-standard opt-in keywords:
+
+```
+START, UNSTOP, YES
+```
+
+<Note>
+  Opt-in only affects contacts who are **currently opted out**. An opt-in keyword
+  from an unknown number (one that has never contacted you) is ignored — it does
+  not create a contact.
+</Note>
+
+## Configure opt-in
+
+<Steps>
+  <Step title="Open opt-in settings">
+    Go to **Settings → Opt-out** and use the **Opt-In Settings** column on the right.
+  </Step>
+  <Step title="Manage keywords">
+    Add custom re-subscribe keywords (for example, `subscribe`) under **Keywords**.
+    Up to **75** per workspace, same rules as opt-out.
+  </Step>
+  <Step title="Set a welcome-back auto-reply (optional)">
+    Under **Auto-Reply Message**, enter an optional confirmation (up to **1,600
+    characters**) sent when a contact re-subscribes, then **Save**.
+  </Step>
+</Steps>
+
+## About "auto-reply" and AI
+
+The opt-in and opt-out auto-replies are **static messages you configure** — the
+exact text you enter is sent back verbatim. They are **not** AI-generated.
+
+If you want AI to answer, qualify, or route **inbound conversations**, that's a
+separate feature — see the [AI agent](/automation/ai-agent), which works alongside
+your [Inbox](/inbox/overview). Compliance replies (opt-in/opt-out confirmations)
+remain deterministic on purpose.
+
+## Provider-reserved keywords
+
+Like opt-out, providers reserve the standard opt-in keywords:
+
+- **Twilio** automatically handles `START, UNSTOP, YES` and sends its own
+  confirmation, so EzyText skips its reply for those. Your custom keywords are
+  answered by EzyText.
+- **Telnyx** behaves similarly when advanced opt-in sync is applied on the profile.
+
+## Consent and audit trail
+
+EzyText records how each contact entered your list via a **consent source**, such
+as CSV import, manual entry, web form ([join link](/campaigns/join-links)), text
+link, inbound SMS, or an ad platform (Google/Meta). Join-link web forms also store
+a snapshot of the exact consent wording, timestamp, and other evidence per
+submission. Opt-in and opt-out events are logged on the contact's activity
+timeline for compliance.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Does replying START always re-subscribe someone?">
+    Only if they were opted out. If they were never opted out, the keyword is a
+    no-op — no change and no reply.
+  </Accordion>
+  <Accordion title="Will an opt-in from a brand-new number create a contact?">
+    No. Unlike opt-out (which records STOP even from unknown numbers for
+    compliance), opt-in from a number that never contacted you is ignored.
+  </Accordion>
+  <Accordion title="Is the opt-in confirmation written by AI?">
+    No. It's the static message you configure. For AI-assisted inbound replies, use
+    the [AI agent](/automation/ai-agent).
+  </Accordion>
+  <Accordion title="Why didn't my welcome-back message send?">
+    For provider-reserved keywords (START, UNSTOP, YES) the carrier sends its own
+    reply and blocks EzyText's. Custom keywords you add are answered by EzyText.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="A re-subscribed contact still isn't getting campaigns">
+    Confirm an **Opted in** event appears on their timeline. If they opted in after
+    a campaign's audience was built, they'll be included in the next send.
+  </Accordion>
+  <Accordion title="Custom opt-in keyword isn't working">
+    Check it's spelled correctly and that the inbound message *starts* with it.
+    Matching is start-anchored and whole-word.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Opt-out management" icon="ban" href="/compliance/opt-out">
+  STOP handling and keyword configuration.
+</Card>

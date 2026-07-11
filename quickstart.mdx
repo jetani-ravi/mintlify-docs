@@ -1,47 +1,80 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "From sign-up to your first campaign in about 20 minutes."
+icon: "rocket"
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+This guide takes you from a brand-new account to a live SMS campaign. Along the
+way you will connect a sending channel, import contacts, and send a message.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+<Info>
+  **Time to complete:** ~20 minutes &nbsp;·&nbsp; **Difficulty:** Beginner
+</Info>
 
 ## Prerequisites
 
-Before you begin, you must have:
+Before you begin, you need:
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+- An EzyText account. [Sign up](https://app.ezytext.ai) if you do not have one.
+- A [Twilio](/providers/twilio) or [Telnyx](/providers/telnyx) account with a
+  phone number, **or** an email domain you can verify for the email channel.
+- A short list of contacts (name and phone number) to message. A CSV works best.
+
+<Note>
+  Sending A2P SMS to US numbers requires [10DLC registration](/compliance/a2p-10dlc).
+  You can complete the steps below with a trial number first, then register before
+  sending at volume.
+</Note>
 
 ## Get started
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Create your workspace" icon="building">
+    After signing up, name your organization and set your default country and
+    timezone. See [Create your workspace](/getting-started/create-workspace).
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Connect a sending channel" icon="plug">
+    Go to **Settings → Channels** and connect a provider:
 
-    ```bash
-    your-cli init
-    ```
+    - **SMS:** follow [Connect Twilio](/providers/twilio) or [Connect Telnyx](/providers/telnyx).
+    - **Email:** verify a domain and sender in [Email channel](/channels/email).
+
+    A channel shows a green **Connected** badge once credentials are valid.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Import your contacts" icon="file-import">
+    Open **Contacts → Import**, upload your CSV, and map the columns to contact
+    fields. Confirm consent, then run the import. Full walkthrough:
+    [Import contacts](/contacts/import-csv).
+  </Step>
+  <Step title="Create a campaign" icon="paper-plane">
+    Go to **Campaigns → New**, pick your sending number, write your message
+    (add merge tags like `{{first_name}}`), and choose who receives it.
+    See [Campaigns](/campaigns/overview).
+  </Step>
+  <Step title="Send or schedule" icon="clock">
+    Send now or schedule for later, then watch delivery and replies come in on
+    the [Dashboard](/analytics/dashboard) and in your [Inbox](/inbox/overview).
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What's next
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+<CardGroup cols={2}>
+  <Card title="Register for 10DLC" icon="shield-check" href="/compliance/a2p-10dlc">
+    Required for reliable US SMS delivery at scale.
+  </Card>
+  <Card title="Build a dynamic segment" icon="filter" href="/contacts/segments">
+    Target the right contacts automatically with rules.
+  </Card>
+  <Card title="Automate follow-up" icon="diagram-project" href="/automation/workflow-builder">
+    Send a welcome sequence when someone joins.
+  </Card>
+  <Card title="Turn on the AI agent" icon="robot" href="/automation/ai-agent">
+    Let AI answer and qualify inbound replies.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Need help? Email [support@ezytext.ai](mailto:support@ezytext.ai) or check the
+  [Troubleshooting](/support/troubleshooting) guide.
 </Tip>

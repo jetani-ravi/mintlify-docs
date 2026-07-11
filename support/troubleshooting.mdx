@@ -1,0 +1,130 @@
+---
+title: "Troubleshooting"
+description: "Fix common errors across providers, compliance, email, ads, and webhooks."
+icon: "wrench"
+---
+
+Common issues and fixes, grouped by area. If you're still stuck, contact
+[support@ezytext.ai](mailto:support@ezytext.ai).
+
+## SMS provider connection
+
+<AccordionGroup>
+  <Accordion title="Twilio: 'Invalid credentials'">
+    Re-copy your **Account SID** (`AC…`) and **Auth Token** (32 chars) from the Twilio
+    Console → Account Info. Watch for trailing spaces and rotated tokens. See
+    [Connect Twilio](/providers/twilio).
+  </Accordion>
+  <Accordion title="Telnyx: 'API key is missing required permissions'">
+    Your API key needs the **Messaging** scope. Recreate the key with Messaging
+    enabled. See [Connect Telnyx](/providers/telnyx).
+  </Accordion>
+  <Accordion title="Replies aren't arriving">
+    Finish the setup wizard so webhooks are registered, and confirm the number is
+    attached to a managed messaging service/profile.
+  </Accordion>
+</AccordionGroup>
+
+## SMS delivery (common Twilio error codes)
+
+<AccordionGroup>
+  <Accordion title="30007 — message filtered / blocked by carrier">
+    Usually a content or compliance issue. Register [10DLC](/compliance/a2p-10dlc),
+    avoid spam-trigger wording and shortened public URLs, and keep opt-in/opt-out
+    language clear.
+  </Accordion>
+  <Accordion title="30034 — unregistered / pending 10DLC">
+    The sending number isn't associated with an approved A2P campaign. Complete
+    [10DLC registration](/compliance/a2p-10dlc) and attach the number to the
+    registered messaging service.
+  </Accordion>
+  <Accordion title="21608 — number not enabled / trial restriction">
+    The from-number can't send to that destination (e.g. a trial number to an
+    unverified recipient). Verify the number and destination, or upgrade the provider
+    account.
+  </Accordion>
+  <Accordion title="21610 — recipient has opted out (STOP)">
+    Expected when messaging an opted-out contact — the carrier blocks it. EzyText
+    already excludes opted-out contacts; see [Opt-out](/compliance/opt-out).
+  </Accordion>
+</AccordionGroup>
+
+## A2P 10DLC
+
+<AccordionGroup>
+  <Accordion title="Brand rejected / Unverified">
+    Almost always an identity mismatch. Ensure your **Legal Business Name**, **EIN**,
+    and **address** exactly match your IRS records, then resubmit.
+  </Accordion>
+  <Accordion title="'Brand is not approved yet' when creating a campaign">
+    Wait until the brand badge is green (Approved/Verified) before registering a
+    campaign.
+  </Accordion>
+  <Accordion title="Campaign rejected (TCR/MNO Rejected)">
+    Tighten your opt-in flow description and make sample messages match your use case.
+    See [A2P 10DLC](/compliance/a2p-10dlc#troubleshooting).
+  </Accordion>
+</AccordionGroup>
+
+## Email
+
+<AccordionGroup>
+  <Accordion title="Domain stuck on 'Pending'">
+    Check each CNAME host/value matches exactly (your DNS provider may auto-append the
+    domain). Propagation can take up to 48 hours. See [Sending domains](/providers/email-domains).
+  </Accordion>
+  <Accordion title="'Domain not verified' when sending">
+    You can only send from a **Verified** domain and a sender on it. Complete DNS
+    verification first.
+  </Accordion>
+  <Accordion title="'Email must end with @yourdomain'">
+    A sender's address must belong to its verified domain. See
+    [Senders](/providers/email-senders).
+  </Accordion>
+</AccordionGroup>
+
+## Advertising
+
+<AccordionGroup>
+  <Accordion title="'Permission wasn't granted' / OAuth failed">
+    You declined a permission during Google/Facebook sign-in. Reconnect and allow
+    access. See [Google Ads](/providers/google-ads) / [Meta Ads](/providers/meta-ads).
+  </Accordion>
+  <Accordion title="'No ad accounts found'">
+    You signed in with an account that has no ad accounts. Reconnect with the account
+    that manages your ads.
+  </Accordion>
+  <Accordion title="Account shows 'Needs attention'">
+    Access expired or was revoked. Click **Reconnect** to restore lead flow.
+  </Accordion>
+</AccordionGroup>
+
+## Webhooks
+
+<AccordionGroup>
+  <Accordion title="Signature verification fails">
+    Sign `<timestamp>.<raw-body>` (raw bytes, pre-parse) with HMAC-SHA256 using your
+    signing secret, and compare to `v1` in `X-EzyText-Signature`. See
+    [Webhooks](/developers/webhooks).
+  </Accordion>
+  <Accordion title="My endpoint was auto-disabled">
+    Repeated failures disable an endpoint. Fix it and re-activate to reset the failure
+    streak.
+  </Accordion>
+</AccordionGroup>
+
+## Contacts & import
+
+<AccordionGroup>
+  <Accordion title="CSV rows failed with 'Invalid phone number format'">
+    Phone values allow digits, spaces, hyphens, parentheses, and a leading `+`, up to
+    20 characters. Clean the column and re-import. See [Import](/contacts/import-csv).
+  </Accordion>
+  <Accordion title="'File does not appear to contain valid CSV text'">
+    Re-export as **CSV UTF-8** (not `.xlsx`) and keep it under 10 MB / 50,000 rows.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Contact support" icon="life-ring" href="mailto:support@ezytext.ai">
+  We're happy to help.
+</Card>

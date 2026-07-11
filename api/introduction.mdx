@@ -1,0 +1,64 @@
+---
+title: "API introduction"
+description: "Programmatic access to your EzyText workspace over a REST API."
+icon: "code"
+---
+
+## Overview
+
+EzyText exposes a REST API for your workspace's resources — contacts, segments,
+campaigns, polls, templates, and links. Anything you can do in the app you can
+automate with the API.
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/api/authentication">
+    Create an API key and send it with each request.
+  </Card>
+  <Card title="Conventions" icon="list-check" href="/api/conventions">
+    Response envelope, pagination, rate limits, and errors.
+  </Card>
+</CardGroup>
+
+## Base URL
+
+Endpoints are served at the **root** of your API host (there's no `/api` prefix):
+
+```
+https://<your-api-host>/contacts
+https://<your-api-host>/campaigns
+```
+
+Ask your administrator for your instance's API host. Paths in this reference are
+shown without the host (for example, `POST /contacts`).
+
+## Interactive reference
+
+The full, always-current endpoint reference — every route, request schema, and
+response schema, with a **try-it console** — is served by the platform as
+interactive docs (ReDoc):
+
+<Card title="Open the interactive API docs" icon="book-open" href="/docs">
+  Browse and try every endpoint at <code>/docs</code> on your API host (raw spec at
+  <code>/docs-json</code>).
+</Card>
+
+This Mintlify reference covers **getting started, authentication, conventions, and a
+curated resource overview**. Use the interactive docs for exhaustive, generated
+schema detail.
+
+## What you can call with an API key
+
+An [API key](/api/authentication) can call the same org-scoped resources a
+workspace Owner can — [Contacts](/api/resources#contacts),
+[Segments](/api/resources#segments), [Tags](/api/resources#tags),
+[Campaigns](/api/resources#campaigns), [Polls](/api/resources#polls),
+[Templates](/api/resources#sms-templates), and [Links](/api/resources#links).
+
+<Warning>
+  A few surfaces are **session-only** (they reject API keys): the **Inbox**, and
+  **API key** and **webhook** management. Use these while signed in to the app.
+</Warning>
+
+<Card title="Start with authentication" icon="key" href="/api/authentication">
+  Create a key and make your first call.
+</Card>

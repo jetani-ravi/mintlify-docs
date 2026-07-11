@@ -1,0 +1,108 @@
+---
+title: "Custom fields"
+description: "Store extra data on contacts with custom fields you define in Module Setup."
+icon: "table-columns"
+---
+
+## Overview
+
+Custom fields let you store data beyond the standard contact details — think
+"Account tier", "Renewal date", or "Lead score". You define them once in **Module
+Setup**, and they then appear on contacts as columns, form fields, filters, and
+import targets.
+
+<Info>
+  **Where to manage them:** Settings → Module Setup (`/settings/module-setup`)
+  &nbsp;·&nbsp; **Difficulty:** Intermediate
+</Info>
+
+## Field types
+
+EzyText's module builder supports a rich set of field types:
+
+| Group | Types |
+| --- | --- |
+| **Text** | Text, Textarea, URL, Email, Phone |
+| **Number** | Number, Currency, Percentage, Rating, Auto-number |
+| **Date** | Date, Date & time, Timezone |
+| **Choice** | Select (dropdown), Multi-select, Boolean (yes/no) |
+| **Relational** | Lookup, User |
+
+Each field can be marked **required**, **unique**, **filterable**, or
+**searchable**, and can have a default value, placeholder, help text, and
+validation rules.
+
+## Create a custom field
+
+<Steps>
+  <Step title="Open Module Setup">
+    Go to **Settings → Module Setup**. Custom fields live in sections within the
+    **Contacts** module.
+  </Step>
+  <Step title="Add a field">
+    Choose a section, add a field, pick its **type**, and set its display name and
+    options (for Select/Multi-select, add the choices).
+  </Step>
+  <Step title="Set behavior">
+    Mark it **filterable** if you want to filter contacts by it, and **required** if
+    every contact must have a value.
+  </Step>
+</Steps>
+
+For the full module-builder capabilities, see [Module builder](/automation/module-builder).
+
+## Where custom fields appear
+
+Once created, a custom field shows up in several places:
+
+- **Contact list** — as a toggleable column (use the **Columns** menu).
+- **Add / Edit contact** — as a form field below the standard details.
+- **Filters** — filterable fields appear in the Contacts **Filters** panel with
+  operators (equals, contains, greater/less than, is empty, and so on).
+- **CSV import** — importable fields become mapping targets (marked "Custom").
+
+<Warning>
+  **Custom fields are not available as message merge tags.** The merge tags you can
+  insert into SMS and email are the standard contact fields only —
+  `first_name`, `last_name`, `full_name`, `phone`, `email`, and the address fields.
+  See [Templates](/campaigns/templates).
+</Warning>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I use a custom field like {{account_tier}} in a message?">
+    No. Merge tags are limited to standard contact fields. Custom fields are for
+    storing, filtering, and segmenting data — not for message personalization today.
+  </Accordion>
+  <Accordion title="Can I filter or segment on a custom field?">
+    Yes, if the field is marked **filterable**. It then appears in the Contacts
+    filter panel. (Segment rule building on custom fields is available via the API.)
+  </Accordion>
+  <Accordion title="Which field types can't be imported?">
+    Lookup, User, and Auto-number fields are excluded from CSV import — everything
+    else can be mapped.
+  </Accordion>
+  <Accordion title="What's the difference between a custom field and a tag?">
+    A **tag** is a simple label (present or not). A **custom field** stores a typed
+    value (text, number, date, choice). Use tags for grouping,
+    [custom fields](/contacts/custom-fields) for data.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="My custom field isn't showing as a contact column">
+    Confirm it's active in Module Setup, then enable it in the **Columns** menu on
+    the Contacts list.
+  </Accordion>
+  <Accordion title="I can't map a CSV column to my custom field">
+    Create the field in Module Setup first, and check its type isn't Lookup, User,
+    or Auto-number (those can't be imported).
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Module builder" icon="cubes" href="/automation/module-builder">
+  Build custom modules, sections, and fields.
+</Card>
