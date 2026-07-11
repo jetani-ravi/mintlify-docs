@@ -52,9 +52,8 @@
           {
             "group": "Email",
             "pages": [
-              "providers/gmail",
-              "providers/microsoft-365",
-              "providers/smtp"
+              "providers/email-domains",
+              "providers/email-senders"
             ]
           },
           {

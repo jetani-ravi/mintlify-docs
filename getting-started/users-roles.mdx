@@ -1,39 +1,82 @@
 ---
 title: "Users & roles"
-description: "Understand roles, permissions, and access control in EzyText."
+description: "Control who can do what with roles and permissions."
 icon: "users-gear"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Users & roles — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+Roles determine what each member can access and do. EzyText ships with five
+built-in roles and lets you create custom ones. Manage roles at **Settings →
+Roles** (`/settings/roles`) and assign them on **Settings → Users**.
 
-## Before you start
+## Built-in roles
 
-Prerequisites and permissions needed for this task.
+| Role | Typical use |
+| --- | --- |
+| **Owner** | Full control, including billing and ownership. One per workspace. |
+| **Admin** | Everything except owner-only actions. |
+| **Manager** | Runs campaigns, contacts, and inbox; limited settings. |
+| **Agent** | Handles conversations and day-to-day work. |
+| **Viewer** | Read-only access. |
 
-## How-to
+Built-in roles can't be edited or deleted.
+
+## Assign a role
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Open Users → Members">
+    Go to **Settings → Users** and find the member.
+  </Step>
+  <Step title="Change role">
+    Click **Change role**, pick a role, and save.
   </Step>
 </Steps>
+
+<Note>
+  The **Owner** role can't be assigned to others through the UI.
+</Note>
+
+## Create a custom role
+
+<Steps>
+  <Step title="Open Roles">
+    Go to **Settings → Roles** and click **Create**.
+  </Step>
+  <Step title="Name it and set permissions">
+    Give the role a **name** and description, then use the **permission matrix** to
+    grant create/read/update/delete on each area (contacts, campaigns, inbox,
+    channels, billing, and more).
+  </Step>
+  <Step title="Save and assign">
+    Save the role, then assign it to members from **Users**.
+  </Step>
+</Steps>
+
+## Permissions
+
+Permissions are grouped by area (for example, Contacts, Campaigns, Segments, Inbox,
+Channels, Billing, Analytics, API keys, Webhooks). Most support the standard
+create / read / update / delete actions, plus a few specialized ones (like send or
+pause a campaign, reply or assign in the inbox). The UI you see adapts to your
+permissions — actions you can't perform are hidden or disabled.
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Can I edit a built-in role?">
+    No. Built-in roles are fixed. Create a custom role if you need different
+    permissions.
+  </Accordion>
+  <Accordion title="Can I delete a role that has members?">
+    Not until you reassign those members to another role.
+  </Accordion>
+  <Accordion title="How do I give someone billing access without full admin?">
+    Create a custom role granting billing read/manage and the other areas you want,
+    then assign it.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<Card title="Invite your team" icon="user-plus" href="/getting-started/invite-team">
+  Add members and assign roles.
+</Card>

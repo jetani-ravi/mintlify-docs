@@ -1,39 +1,64 @@
 ---
 title: "Email channel"
-description: "Send email campaigns and transactional email from verified domains."
+description: "Send email campaigns from your own verified domain and sender addresses."
 icon: "envelope"
 ---
 
-<Note>
-  This guide is being expanded. The structure below is final; detailed steps and
-  screenshots are landing in an upcoming update.
-</Note>
-
 ## Overview
 
-Email channel — what it is and when to use it. This section will introduce the feature,
-who it is for, and what you can accomplish with it.
+EzyText's email channel lets you send email [campaigns](/campaigns/overview) from
+your own domain. Delivery is handled for you — you don't connect Gmail, Outlook, or
+an SMTP server. Instead, you **verify a sending domain** and add **sender
+identities**, then send.
 
-## Before you start
+<Info>
+  **Difficulty:** Intermediate (DNS setup) &nbsp;·&nbsp; **Time:** ~10 minutes plus
+  DNS propagation
+</Info>
 
-Prerequisites and permissions needed for this task.
-
-## How-to
+## Set up email in two steps
 
 <Steps>
-  <Step title="Step one">
-    Step-by-step instructions grounded in the EzyText app.
+  <Step title="Verify a sending domain" icon="globe">
+    Add your domain and publish the DNS records EzyText gives you so your email is
+    authenticated (SPF/DKIM) and links are tracked. See
+    [Sending domains](/providers/email-domains).
+  </Step>
+  <Step title="Add a sender" icon="user">
+    Create a from-name and from-address on your verified domain. See
+    [Senders](/providers/email-senders).
   </Step>
 </Steps>
+
+Once a sender is verified, choose it when creating an [email campaign](/campaigns/overview).
+
+<Note>
+  There's no Gmail / Microsoft 365 / SMTP connection to configure. Email sending is
+  managed by EzyText — your only setup is domain verification and senders.
+</Note>
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="A common question">
-    Answer coming soon.
+  <Accordion title="Can I connect my Gmail or Outlook mailbox?">
+    No. EzyText sends email on your behalf from your **verified domain** — there's no
+    per-mailbox OAuth or SMTP connection.
+  </Accordion>
+  <Accordion title="Do I need my own SendGrid or SES account?">
+    No. Email delivery is handled by the platform. You only verify a domain and add
+    senders.
+  </Accordion>
+  <Accordion title="Why verify a domain at all?">
+    Domain authentication (SPF/DKIM) is what makes your email land in inboxes instead
+    of spam, and lets you send from `you@yourdomain.com` rather than a shared address.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
-
-Common errors and how to resolve them will be listed here.
+<CardGroup cols={2}>
+  <Card title="Verify a domain" icon="globe" href="/providers/email-domains">
+    Publish DNS records to authenticate your domain.
+  </Card>
+  <Card title="Add a sender" icon="user" href="/providers/email-senders">
+    Create your from-address.
+  </Card>
+</CardGroup>
