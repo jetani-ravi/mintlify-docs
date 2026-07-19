@@ -6,7 +6,7 @@ icon: "webhook"
 
 ## Overview
 
-Webhooks push events from EzyText to your own URL in real time — for example, when a
+Webhooks push events from Autocampaign AI to your own URL in real time — for example, when a
 contact is created or a campaign completes. Manage them at **Settings → Webhooks**
 (`/settings/webhooks`).
 
@@ -60,10 +60,10 @@ contact is created or a campaign completes. Manage them at **Settings → Webhoo
 Signed deliveries include these headers:
 
 ```http
-X-EzyText-Signature: t=<unix>,v1=<hex-hmac-sha256>
-X-EzyText-Timestamp: <unix>
-X-EzyText-Event: <event.name>
-X-EzyText-Delivery: <delivery-id>
+X-Autocampaign-Signature: t=<unix>,v1=<hex-hmac-sha256>
+X-Autocampaign-Timestamp: <unix>
+X-Autocampaign-Event: <event.name>
+X-Autocampaign-Delivery: <delivery-id>
 ```
 
 Compute an HMAC-SHA256 of `<timestamp>.<raw-body>` using your signing secret and
@@ -99,7 +99,7 @@ compare it (in constant time) to `v1`. Reject stale timestamps.
 <AccordionGroup>
   <Accordion title="Signature verification fails">
     Sign `<timestamp>.<raw-body>` (the exact raw bytes, before JSON parsing) with your
-    secret using HMAC-SHA256, and compare to the `v1` value in `X-EzyText-Signature`.
+    secret using HMAC-SHA256, and compare to the `v1` value in `X-Autocampaign-Signature`.
   </Accordion>
   <Accordion title="My endpoint was auto-disabled">
     It hit repeated terminal failures. Fix the endpoint, then re-activate it — this

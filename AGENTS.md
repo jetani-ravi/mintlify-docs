@@ -1,8 +1,8 @@
-# EzyText documentation — project instructions
+# Autocampaign AI documentation — project instructions
 
 ## About this project
 
-- Customer help center for **EzyText**, a multi-channel text-campaign platform (SMS, email, advertising).
+- Customer help center for **Autocampaign AI**, a multi-channel text-campaign platform (SMS, email, advertising).
 - Built on [Mintlify](https://mintlify.com); pages are MDX files with YAML frontmatter.
 - Navigation and settings live in `docs.json` (`navigation.tabs → groups → pages`).
 - Content must reflect the **actual app** — cross-check the product repo

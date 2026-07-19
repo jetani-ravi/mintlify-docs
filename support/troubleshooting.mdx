@@ -5,7 +5,7 @@ icon: "wrench"
 ---
 
 Common issues and fixes, grouped by area. If you're still stuck, contact
-[support@ezytext.ai](mailto:support@ezytext.ai).
+[support@autocampaign.ai](mailto:support@autocampaign.ai).
 
 ## SMS provider connection
 
@@ -44,7 +44,7 @@ Common issues and fixes, grouped by area. If you're still stuck, contact
     account.
   </Accordion>
   <Accordion title="21610 — recipient has opted out (STOP)">
-    Expected when messaging an opted-out contact — the carrier blocks it. EzyText
+    Expected when messaging an opted-out contact — the carrier blocks it. Autocampaign AI
     already excludes opted-out contacts; see [Opt-out](/compliance/opt-out).
   </Accordion>
 </AccordionGroup>
@@ -104,7 +104,7 @@ Common issues and fixes, grouped by area. If you're still stuck, contact
 <AccordionGroup>
   <Accordion title="Signature verification fails">
     Sign `<timestamp>.<raw-body>` (raw bytes, pre-parse) with HMAC-SHA256 using your
-    signing secret, and compare to `v1` in `X-EzyText-Signature`. See
+    signing secret, and compare to `v1` in `X-Autocampaign-Signature`. See
     [Webhooks](/developers/webhooks).
   </Accordion>
   <Accordion title="My endpoint was auto-disabled">
@@ -125,6 +125,6 @@ Common issues and fixes, grouped by area. If you're still stuck, contact
   </Accordion>
 </AccordionGroup>
 
-<Card title="Contact support" icon="life-ring" href="mailto:support@ezytext.ai">
+<Card title="Contact support" icon="life-ring" href="mailto:support@autocampaign.ai">
   We're happy to help.
 </Card>

@@ -41,7 +41,7 @@ consent, and trigger a welcome message. Each gets a shareable URL and a QR code.
 
 The public page (`/join/<slug>`) opens the visitor's Messages app pre-filled with
 your number and the keyword text, plus a QR that does the same. When they send it,
-EzyText creates the contact (source **Text Link**), applies your segment and tags,
+Autocampaign AI creates the contact (source **Text Link**), applies your segment and tags,
 records the reply as consent, and sends your welcome message.
 
 ## Web form
@@ -68,7 +68,7 @@ records the reply as consent, and sends your welcome message.
   </Step>
 </Steps>
 
-When someone submits, EzyText validates consent (and OTP if enabled), creates or
+When someone submits, Autocampaign AI validates consent (and OTP if enabled), creates or
 updates the contact (source **Web Form**), adds them to your segment, applies tags,
 records a **consent snapshot** (the exact consent text, a hashed IP, user agent, and
 timestamp), and sends the welcome message. They then see your thank-you screen or
@@ -82,7 +82,7 @@ For text links the QR opens Messages pre-filled; for web forms it opens the form
 
 ## Opt-out protection
 
-EzyText won't re-onboard an opted-out contact through a join link. If someone who
+Autocampaign AI won't re-onboard an opted-out contact through a join link. If someone who
 previously opted out tries to submit (or request an OTP), the request is refused —
 protecting you under TCPA/GDPR. See [Opt-out management](/compliance/opt-out).
 
@@ -102,7 +102,7 @@ submissions until you reactivate; archiving (delete) makes the public URL return
 
 <AccordionGroup>
   <Accordion title="What's the 'keyword' for a text link?">
-    It's the SMS template body people send. EzyText matches the inbound message
+    It's the SMS template body people send. Autocampaign AI matches the inbound message
     against it (exact or contains), so extra typed text still counts.
   </Accordion>
   <Accordion title="Do web forms verify phone numbers?">
@@ -110,7 +110,7 @@ submissions until you reactivate; archiving (delete) makes the public URL return
     6-digit code before submission.
   </Accordion>
   <Accordion title="Is consent recorded?">
-    Yes. When consent is required, EzyText stores the exact consent wording shown,
+    Yes. When consent is required, Autocampaign AI stores the exact consent wording shown,
     plus a hashed IP, user agent, and timestamp, per submission.
   </Accordion>
   <Accordion title="Can I redirect after submit?">

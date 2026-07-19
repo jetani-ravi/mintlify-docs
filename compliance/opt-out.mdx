@@ -7,7 +7,7 @@ icon: "ban"
 ## Overview
 
 When someone replies **STOP** (or another opt-out keyword), they must stop
-receiving your messages — it's a legal requirement and a carrier rule. EzyText
+receiving your messages — it's a legal requirement and a carrier rule. Autocampaign AI
 detects opt-out keywords on every inbound message, flags the contact, and excludes
 them from all future campaigns automatically.
 
@@ -23,7 +23,7 @@ Opt-out** (the page shows Opt-out and [Opt-in](/compliance/opt-in) side by side)
 
 <Steps>
   <Step title="A contact replies with a keyword">
-    EzyText checks each inbound message against your opt-out keywords **before** any
+    Autocampaign AI checks each inbound message against your opt-out keywords **before** any
     other processing (so `STOP` in reply to a poll is treated as an opt-out, not a vote).
   </Step>
   <Step title="The keyword is matched">
@@ -32,12 +32,12 @@ Opt-out** (the page shows Opt-out and [Opt-in](/compliance/opt-in) side by side)
     `STOPOVER` does not.
   </Step>
   <Step title="The contact is opted out">
-    EzyText marks the contact as opted out, records an **Opted out** entry on their
+    Autocampaign AI marks the contact as opted out, records an **Opted out** entry on their
     activity timeline (with the keyword and message), and removes them from future
     campaign audiences. Repeated STOPs are a no-op.
   </Step>
   <Step title="An optional confirmation is sent">
-    If you've configured an auto-reply message, EzyText sends it (see limitations
+    If you've configured an auto-reply message, Autocampaign AI sends it (see limitations
     with provider-reserved keywords below).
   </Step>
 </Steps>
@@ -78,9 +78,9 @@ Carriers and providers reserve the standard keywords and reply to them at the
 network edge:
 
 - **Twilio** automatically handles `STOP, STOPALL, STOP ALL, UNSUBSCRIBE, CANCEL,
-  END, QUIT`. For these, Twilio sends its own STOP confirmation and blocks EzyText's
+  END, QUIT`. For these, Twilio sends its own STOP confirmation and blocks Autocampaign AI's
   duplicate reply. Your custom keywords (like `leave`) are detected and answered by
-  EzyText instead.
+  Autocampaign AI instead.
 - **Telnyx** behaves similarly when advanced opt-out sync is applied on the profile.
 
 <Note>
@@ -111,7 +111,7 @@ network edge:
     automatically.
   </Accordion>
   <Accordion title="Can I add a STOP footer to my messages?">
-    EzyText doesn't add an opt-out footer automatically. Include opt-out language in
+    Autocampaign AI doesn't add an opt-out footer automatically. Include opt-out language in
     your message copy where appropriate — carriers expect it, especially for
     marketing.
   </Accordion>
@@ -122,7 +122,7 @@ network edge:
 <AccordionGroup>
   <Accordion title="My custom opt-out reply isn't being sent">
     For provider-reserved keywords (STOP, UNSUBSCRIBE, etc.), the carrier sends its
-    own reply and blocks EzyText's. Your custom auto-reply is sent only for
+    own reply and blocks Autocampaign AI's. Your custom auto-reply is sent only for
     non-reserved keywords you've added yourself.
   </Accordion>
   <Accordion title="A contact still received a campaign after opting out">

@@ -10,8 +10,8 @@ icon: "plug"
 
 ## Overview
 
-Twilio is one of two SMS providers EzyText supports (the other is
-[Telnyx](/providers/telnyx)). Connecting Twilio lets EzyText send text messages
+Twilio is one of two SMS providers Autocampaign AI supports (the other is
+[Telnyx](/providers/telnyx)). Connecting Twilio lets Autocampaign AI send text messages
 from your Twilio numbers, receive replies in your [Inbox](/inbox/overview), and
 manage [A2P 10DLC](/compliance/a2p-10dlc) registration for you.
 
@@ -29,7 +29,7 @@ You need:
   funds to buy one.
 - Your Twilio **Account SID** and **Auth Token** (both on the Twilio Console
   dashboard under **Account Info**).
-- The **Manage channels** permission in EzyText (Owner or Admin).
+- The **Manage channels** permission in Autocampaign AI (Owner or Admin).
 
 <Tip>
   You can connect with a Twilio trial number to test end-to-end, then complete
@@ -40,7 +40,7 @@ You need:
 
 <Steps>
   <Step title="Open the Twilio channel">
-    In EzyText, go to **Settings → Channels**. Under **SMS**, find the **Twilio**
+    In Autocampaign AI, go to **Settings → Channels**. Under **SMS**, find the **Twilio**
     card ("Enterprise SMS and MMS via Twilio") and click **Configure**.
 
     <Frame caption="Settings → Channels → Twilio">
@@ -55,11 +55,11 @@ You need:
     | **Account SID** | Twilio Console → Account Info | Starts with `AC`, 34 characters |
     | **Auth Token** | Twilio Console → Account Info | 32 characters (kept masked) |
 
-    EzyText validates the format as you type — the Account SID must start with
+    Autocampaign AI validates the format as you type — the Account SID must start with
     `AC` and the Auth Token must be 32 characters.
   </Step>
   <Step title="Connect & save">
-    Click **Connect & Save Credentials**. EzyText makes a live call to Twilio to
+    Click **Connect & Save Credentials**. Autocampaign AI makes a live call to Twilio to
     verify the credentials before saving. On success you'll see
     **"Channel connected successfully"** and the setup wizard opens automatically.
 
@@ -115,7 +115,7 @@ service automatically.
 
 ## Webhooks
 
-You don't configure webhooks manually. When you finish setup, EzyText registers
+You don't configure webhooks manually. When you finish setup, Autocampaign AI registers
 its own webhook URLs with Twilio for each messaging service:
 
 - Inbound messages: `https://<your-app-domain>/webhooks/sms/twilio`
@@ -148,7 +148,7 @@ unusable and pauses active campaigns using the channel, so confirm carefully.
   <Accordion title="Can I use both Twilio and Telnyx at the same time?">
     No. Only one SMS provider is active per workspace. Connecting a second provider
     prompts you to switch, which removes the first provider's numbers and services
-    from EzyText.
+    from Autocampaign AI.
   </Accordion>
   <Accordion title="Do I have to register 10DLC to send?">
     You can send with a connected channel, but US carriers require
@@ -161,7 +161,7 @@ unusable and pauses active campaigns using the channel, so confirm carefully.
   </Accordion>
   <Accordion title="Can I change providers later?">
     Yes, but switching wipes the current provider's numbers and messaging services
-    in EzyText. Your campaigns using that channel are paused until you reconfigure.
+    in Autocampaign AI. Your campaigns using that channel are paused until you reconfigure.
   </Accordion>
 </AccordionGroup>
 
@@ -187,7 +187,7 @@ unusable and pauses active campaigns using the channel, so confirm carefully.
     See [A2P 10DLC troubleshooting](/compliance/a2p-10dlc#troubleshooting).
   </Accordion>
   <Accordion title="Messages send but replies don't appear">
-    Replies arrive via webhook. Finish the setup wizard so EzyText can register its
+    Replies arrive via webhook. Finish the setup wizard so Autocampaign AI can register its
     webhook URLs on your messaging service, and make sure the number is attached to
     a managed messaging service.
   </Accordion>

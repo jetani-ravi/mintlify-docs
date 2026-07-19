@@ -1,6 +1,6 @@
 ---
 title: "Connect Telnyx"
-description: "Connect your Telnyx account and messaging profile to send and receive SMS through EzyText."
+description: "Connect your Telnyx account and messaging profile to send and receive SMS through Autocampaign AI."
 icon: "plug"
 ---
 
@@ -10,14 +10,14 @@ icon: "plug"
 
 ## Overview
 
-Telnyx is one of two SMS providers EzyText supports (the other is
-[Twilio](/providers/twilio)). Connecting Telnyx lets EzyText send text messages
+Telnyx is one of two SMS providers Autocampaign AI supports (the other is
+[Twilio](/providers/twilio)). Connecting Telnyx lets Autocampaign AI send text messages
 through your Telnyx numbers and messaging profiles, receive replies in your
 [Inbox](/inbox/overview), and handle [A2P 10DLC](/compliance/a2p-10dlc) registration.
 
 <Note>
   In Telnyx, a **messaging profile** plays the same role that a *messaging service*
-  plays in Twilio. EzyText uses "Messaging Profile" terminology throughout the
+  plays in Twilio. Autocampaign AI uses "Messaging Profile" terminology throughout the
   Telnyx setup.
 </Note>
 
@@ -35,11 +35,11 @@ You need:
 - A Telnyx **API Key** with **Messaging scope enabled** (Telnyx Portal → **API Keys**).
 - Optionally, a **Messaging Profile ID** (Telnyx Portal → **Messaging → Messaging
   Profiles**) if you want to link an existing profile.
-- The **Manage channels** permission in EzyText (Owner or Admin).
+- The **Manage channels** permission in Autocampaign AI (Owner or Admin).
 
 <Warning>
   The API key must have the **Messaging** scope. A key without it connects to
-  Telnyx but can't send messages, and EzyText will reject it during validation.
+  Telnyx but can't send messages, and Autocampaign AI will reject it during validation.
 </Warning>
 
 ## Connect Telnyx
@@ -57,11 +57,11 @@ You need:
     | **API Key** | Yes | Telnyx Portal → API Keys (Messaging scope) | Starts with `KEY` |
     | **Messaging Profile ID** | No | Telnyx Portal → Messaging → Messaging Profiles | A UUID |
 
-    EzyText validates format live — the API Key must start with `KEY`, and the
+    Autocampaign AI validates format live — the API Key must start with `KEY`, and the
     Messaging Profile ID (if provided) must be a valid UUID.
   </Step>
   <Step title="Connect & save">
-    Click **Connect & Save Credentials**. EzyText calls Telnyx to list your
+    Click **Connect & Save Credentials**. Autocampaign AI calls Telnyx to list your
     messaging profiles as a live check before saving. On success you'll see
     **"Channel connected successfully"** and the setup wizard opens.
 
@@ -101,7 +101,7 @@ optionally filter by **Area Code** or a **Contains** pattern, select
 
 ## Webhooks
 
-Webhooks are configured automatically. EzyText sets your messaging profile's
+Webhooks are configured automatically. Autocampaign AI sets your messaging profile's
 webhook URL to `https://<your-app-domain>/webhooks/sms/telnyx` (with a failover
 URL for delivery events). Inbound webhooks are verified with Telnyx's Ed25519
 signature (`telnyx-signature-ed25519` + `telnyx-timestamp`).
@@ -116,7 +116,7 @@ Connect tab shows only a masked API Key. Use **Disconnect** to remove the channe
 
 <AccordionGroup>
   <Accordion title="Do I need a Messaging Profile ID to connect?">
-    No — it's optional. If you leave it blank, EzyText discovers your messaging
+    No — it's optional. If you leave it blank, Autocampaign AI discovers your messaging
     profiles from the API key and lets you pick one during setup.
   </Accordion>
   <Accordion title="What scope does my API key need?">
@@ -125,7 +125,7 @@ Connect tab shows only a masked API Key. Use **Disconnect** to remove the channe
   </Accordion>
   <Accordion title="What's the difference between a profile and a service?">
     They're the same concept across providers. Telnyx calls it a **messaging
-    profile**; Twilio calls it a **messaging service**. EzyText assigns numbers to
+    profile**; Twilio calls it a **messaging service**. Autocampaign AI assigns numbers to
     a profile so it knows which sender and webhooks to use.
   </Accordion>
   <Accordion title="Can I run Telnyx and Twilio together?">
@@ -150,7 +150,7 @@ Connect tab shows only a masked API Key. Use **Disconnect** to remove the channe
     — copy the API key value, not the key ID or a public key.
   </Accordion>
   <Accordion title="Numbers don't receive replies">
-    Finish setup so EzyText can write the webhook URL to your messaging profile, and
+    Finish setup so Autocampaign AI can write the webhook URL to your messaging profile, and
     confirm the number is attached to that profile.
   </Accordion>
 </AccordionGroup>

@@ -1,6 +1,6 @@
-# EzyText Documentation
+# Autocampaign AI Documentation
 
-Customer-facing help center for the EzyText text-campaign platform, built with
+Customer-facing help center for the Autocampaign AI text-campaign platform, built with
 [Mintlify](https://mintlify.com). Every page is grounded in the actual product
 modules (backend `src/modules/*`, frontend `src/features/*`).
 

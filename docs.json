@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "EzyText",
+  "name": "Autocampaign AI",
   "colors": {
     "primary": "#4F46E5",
     "light": "#818CF8",
@@ -214,12 +214,12 @@
       "anchors": [
         {
           "anchor": "Support",
-          "href": "mailto:support@ezytext.ai",
+          "href": "mailto:support@autocampaign.ai",
           "icon": "life-ring"
         },
         {
           "anchor": "Status",
-          "href": "https://status.ezytext.ai",
+          "href": "https://status.autocampaign.ai",
           "icon": "signal"
         }
       ]
@@ -233,13 +233,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@ezytext.ai"
+        "href": "mailto:support@autocampaign.ai"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Open App",
-      "href": "https://app.ezytext.ai"
+      "href": "https://app.autocampaign.ai"
     }
   },
   "contextual": {
@@ -247,9 +247,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/ezytext",
-      "github": "https://github.com/jetani-ravi/mintlify-docs",
-      "linkedin": "https://linkedin.com/company/ezytext"
+      "website": "https://autocampaign.ai",
+      "github": "https://github.com/jetani-ravi/mintlify-docs"
     }
   }
 }

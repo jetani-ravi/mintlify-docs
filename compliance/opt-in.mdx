@@ -7,7 +7,7 @@ icon: "circle-check"
 ## Overview
 
 Opt-in is how a contact who previously opted out can **re-subscribe** to your
-messages. When someone replies with an opt-in keyword like **START**, EzyText
+messages. When someone replies with an opt-in keyword like **START**, Autocampaign AI
 clears their opt-out flag, records the consent on their timeline, and can send an
 optional welcome-back confirmation.
 
@@ -23,17 +23,17 @@ right-hand **Opt-In Settings** column (next to [Opt-out](/compliance/opt-out)).
 
 <Steps>
   <Step title="A contact replies with an opt-in keyword">
-    EzyText checks inbound messages for opt-in keywords. Detection is the same as
+    Autocampaign AI checks inbound messages for opt-in keywords. Detection is the same as
     opt-out: case-insensitive, start-anchored, whole-word (`STARTUP` won't match
     `START`).
   </Step>
   <Step title="The contact is re-subscribed">
-    If the contact was previously opted out, EzyText clears the flag, records an
+    If the contact was previously opted out, Autocampaign AI clears the flag, records an
     **Opted in** event on their timeline, and they become eligible for campaigns
     again. If they were never opted out, nothing changes.
   </Step>
   <Step title="An optional confirmation is sent">
-    If you've set an opt-in auto-reply, EzyText sends it (subject to the
+    If you've set an opt-in auto-reply, Autocampaign AI sends it (subject to the
     provider-reserved keyword rules below).
   </Step>
 </Steps>
@@ -83,13 +83,13 @@ remain deterministic on purpose.
 Like opt-out, providers reserve the standard opt-in keywords:
 
 - **Twilio** automatically handles `START, UNSTOP, YES` and sends its own
-  confirmation, so EzyText skips its reply for those. Your custom keywords are
-  answered by EzyText.
+  confirmation, so Autocampaign AI skips its reply for those. Your custom keywords are
+  answered by Autocampaign AI.
 - **Telnyx** behaves similarly when advanced opt-in sync is applied on the profile.
 
 ## Consent and audit trail
 
-EzyText records how each contact entered your list via a **consent source**, such
+Autocampaign AI records how each contact entered your list via a **consent source**, such
 as CSV import, manual entry, web form ([join link](/campaigns/join-links)), text
 link, inbound SMS, or an ad platform (Google/Meta). Join-link web forms also store
 a snapshot of the exact consent wording, timestamp, and other evidence per
@@ -113,7 +113,7 @@ timeline for compliance.
   </Accordion>
   <Accordion title="Why didn't my welcome-back message send?">
     For provider-reserved keywords (START, UNSTOP, YES) the carrier sends its own
-    reply and blocks EzyText's. Custom keywords you add are answered by EzyText.
+    reply and blocks Autocampaign AI's. Custom keywords you add are answered by Autocampaign AI.
   </Accordion>
 </AccordionGroup>
 
